@@ -506,10 +506,3 @@ function toggleLayer1() {
 //---------------------------------------------------------------------------------------------------------------------------------
 
 // create leaflet map ...
-
-const swoopy = L.swoopyArrow([53.52, 13.4], [53.525, 14.41], {
-  label: 'Hi!',
-  labelFontSize: 12,
-  iconAnchor: [20, 10],
-  iconSize: [20, 16]
-}).addTo(map);
