@@ -562,7 +562,7 @@
           }
           t.attributionControl.setPrefix(
             T +
-              '<a href="https://fb.com/maithulamm">Mai Thư Lâm | </a><a href="https://hcmussh.edu.vn/dialy">GEO, VNUHCM-USSH</a>'
+              '|</a><a href="https://hcmussh.edu.vn/">VNUHCM-USSH</a>'
           ),
             e.DomUtil.addClass(
               t.attributionControl._container,
