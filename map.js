@@ -278,6 +278,7 @@ function createGeoJSONLayer(data, line) {
         ,
         L.geoJSON(line, {
             onEachFeature: function (feature, layer) {
+                layer.setText(`          ►           `+"", {offset: 5,attributes: {fill: `${feature.properties.color}`,'font-size':"15px"}, orientation: '', center: false,repeat: true});
                 layer.setStyle({
                     'color': feature.properties.color,
                     'dashArray': feature.properties.dashArray,
@@ -292,7 +293,9 @@ function createGeoJSONLayer(data, line) {
     ];
 }
 
-function createGeoJSONLayer1(data, line) {
+
+
+function createGeoJSONLayer1(data) {
     return [
         L.geoJSON(data, {
             pointToLayer: function(feature, latlng) {
@@ -372,7 +375,29 @@ function toggleLayer(dataLayer, lineLayer) {
     isInfoVisible = false;
     info.classList.remove("active");
     info.classList.add("inactive");
-    map.setView([20.552, 23.21484], calculateZoom());
+    function getCenterOfDataLayer(lineLayer) {
+        // Get the bounds of the 
+        var bounds = lineLayer.getBounds();
+    
+        if (bounds.isValid()) {
+            // If the bounds are valid, return the center of the bounds
+            return bounds.getCenter();
+        } else {
+            // If the bounds are not valid, return null or handle the case accordingly
+            return null;
+        }
+    }
+    // Sử dụng hàm để lấy điểm trung tâm của 
+    var centerPoint = getCenterOfDataLayer(lineLayer);
+    
+    if (centerPoint !== null) {
+        // Sử dụng điểm trung tâm, ví dụ:
+        console.log("Center Point:", centerPoint);
+        map.setView(centerPoint, 3);
+    } else {
+        console.log("Invalid bounds");
+    }
+        
     dao.addTo(map);
     legendControl.remove(map);
     isInfoVisible2 = false;
@@ -387,7 +412,10 @@ function toggleLayer1() {
     });
 
     // Add the selected layers to the map
-    L.layerGroup([line1, line2, line3, line4, line5, line6, line7, line8, line9, line10,data00]).addTo(map);
+    setTimeout(function () {
+        L.layerGroup([line1, line2, line3, line4, line5, line6, line7, line8, line9, line10,data00]).addTo(map);
+      }, 300);
+    
     isInfoVisible = false;
     info.classList.remove("active");
     info.classList.add("inactive");
@@ -505,4 +533,5 @@ function toggleLayer1() {
         });
 //---------------------------------------------------------------------------------------------------------------------------------
 
-// create leaflet map ...
+
+
