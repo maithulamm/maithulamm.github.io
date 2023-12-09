@@ -178,18 +178,10 @@ body{
 
 #info {
     position: absolute;
-    transition: transform 0.5s ease;
+    transition: transform 1s ease;
     transform: translateX(100%);
-    animation-duration: 1s;
-    animation-timing-function: ease;
-}
-#info.active {
-    animation-name: slideIn;
 }
 
-#info.inactive {
-    animation-name: slideIn;
-}
 #info.active {
     transform: translateX(0);
 }
@@ -417,7 +409,7 @@ input:checked ~ .detail{
     font-size: 18px;
     color: #333;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 10px;   
 }
 
 .chugiai_li p {
@@ -430,15 +422,35 @@ input:checked ~ .detail{
 }
 .chugiai_ul .chugiai_li{
     display: flex;
-    height: 40px;
+    height: 30px;
 }
 .chugiai_ul {
-    padding: 0 ;
+    padding: 0;
+    
 }
 .chugiai_line {
-    width: 70px;
+    width: 60px;
     height: 4px;
     margin: 10px 10px 0 0;
+}
+legend{
+    display:block;
+    width:100%;
+    max-width:100%;
+    padding:0;
+    margin-bottom:.5rem;
+    font-size:1.5rem;
+    line-height:inherit;
+    color:inherit;
+    white-space:normal}
+
+.info {
+    transition: transform 1s ease;
+    transform: translateX(0%);
+}
+
+.info.active {
+    transform: translateX(-50%);
 }
 .line0 {
     background-color: #333;
@@ -516,7 +528,7 @@ input:checked ~ .detail{
     }
     .chugiai_ul .chugiai_li{
         display: flex;
-        height: 30px;
+        height: 25px;
     }
     .chugiai_ul {
         padding: 0 ;
@@ -537,5 +549,9 @@ input:checked ~ .detail{
     .img2{
         width: 60px;
         height: 45px;
+    }
+    .icon-image {
+        height: 13px;
+
     }
 }
