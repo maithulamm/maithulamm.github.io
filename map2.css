@@ -130,7 +130,7 @@
 /* control positioning */
 
 .leaflet-control {
-	position: relative;
+	position: flex;
 	z-index: 800;
 	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
 	pointer-events: auto;
@@ -161,7 +161,7 @@
 	float: right;
 	}
 .leaflet-top .leaflet-control {
-	margin-top: 10px;
+	margin-top: 5px;
 	}
 .leaflet-bottom .leaflet-control {
 	margin-bottom: 5px;

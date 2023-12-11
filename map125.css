@@ -252,6 +252,11 @@ body{
     bottom: 0;
     padding-top: .8%;
 }
+#ft a:hover{
+    text-decoration: none;
+    color: black;
+}
+
 .my-div-icon {
     display: flex;
     justify-content: center;
@@ -431,10 +436,10 @@ input:checked ~ .detail{
 .chugiai_line {
     width: 60px;
     height: 4px;
-    margin: 10px 10px 0 0;
+    margin: 5px 10px 0 0;
 }
 legend{
-    display:block;
+    display: flex;
     width:100%;
     max-width:100%;
     padding:0;
@@ -442,16 +447,14 @@ legend{
     font-size:1.5rem;
     line-height:inherit;
     color:inherit;
-    white-space:normal}
+}
 
 .info {
-    transition: transform 1s ease;
-    transform: translateX(0%);
+    position: fixed !important;
+    bottom: 4vh;
 }
 
-.info.active {
-    transform: translateX(-50%);
-}
+
 .line0 {
     background-color: #333;
 }
@@ -489,9 +492,53 @@ legend{
     background-color: #FFCC00;
 }
 
-.i{
-    left: 0 !important;
+
+#i{
+    background-image: url("https://cdn.glitch.global/90845d8e-81a9-424d-b13a-0acd2c0b3b63/4b65a8b55dcdf3ee10db8703ec2b3be6.jpg?v=1700156070316");
+    font-size: 17px;
+    border: none;
+    font-family: 'Times New Roman', serif;
+    color: rgb(109, 42, 42);
+    font-weight: bold;
+    padding: 0 10px 0 10px;
+    text-decoration: none;
+    border-radius: 50%;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(173, 130, 74);
+    position: fixed;
+    transition: border-color 0.3s;
+    bottom: .35vh;
+    left: 10px;
 }
+#p2{
+    padding-left: 40px;
+    width: 220px;
+    height: 30px;
+    font-size: 15px;
+    font-family: 'Signika', sans-serif;
+    font-weight: 600;
+    color: rgb(109, 42, 42);
+    margin: 0;
+    border-radius: 30px;
+    padding-top: 3px;
+    animation-name: info;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity .5s;
+    position: fixed;
+    bottom: .35vh;
+    left: 10px;
+}
+
+
+
+#i:hover{
+    border-color: rgb(109, 42, 42);
+}
+
 
 @media screen and (max-width: 1537px) {
     #nut span img{
@@ -524,7 +571,7 @@ legend{
     }
     
     .chugiai_li p {
-        font-size: 12px;
+        font-size: 11px;
     }
     .chugiai_ul .chugiai_li{
         display: flex;
@@ -536,7 +583,7 @@ legend{
     .chugiai_line {
         width: 50px;
         height: 3px;
-        margin: 7px 7px 0 0;
+        margin: 3px 7px 0 0;
     }
     .hh1{
         font-size: 25px;

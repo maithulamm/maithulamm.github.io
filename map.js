@@ -469,10 +469,20 @@ legendControl.onAdd = function () {
     return div;
 };
 
-
-
-
 //---------------------------------------------------------------------------------------------------------------------------------
 
+var legendControl2 = L.control({ position: 'bottomleft' });
+legendControl2.onAdd = function () {
+    var div = L.DomUtil.create('div', 'info legend');
+    div.innerHTML = `
+    <p id="p2"> Thực hiện: MAI THƯ LÂM </p>
+    <input id = "i" type="button" value = "i" onclick="open_info3()">
+    `;
+    return div;
+};
+legendControl2.addTo(map);
 
-
+function open_info3() {
+    const paragraph = document.getElementById('p2');
+    paragraph.style.opacity = (parseFloat(paragraph.style.opacity) === 1) ? 0 : 1;
+}
