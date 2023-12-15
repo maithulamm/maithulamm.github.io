@@ -439,7 +439,6 @@ input:checked ~ .detail{
     margin: 5px 10px 0 0;
 }
 legend{
-    display: flex;
     width:100%;
     max-width:100%;
     padding:0;
@@ -538,7 +537,14 @@ legend{
 #i:hover{
     border-color: rgb(109, 42, 42);
 }
-
+#p3{
+    font-size: 10px;
+    font-family: 'Arial';
+    color: rgb(0, 0, 0);
+    margin: 10px 0 0 0;
+    height: 12px;
+    bottom: 0;
+}
 
 @media screen and (max-width: 1537px) {
     #nut span img{
@@ -600,5 +606,19 @@ legend{
     .icon-image {
         height: 13px;
 
+    }
+    #i{
+        font-size: 13px;
+        padding: 0 8px 0 8px;
+        border-width: 2px;
+    }
+    #p2{
+        padding-left: 30px;
+        width: 200px;
+        height: 24px;
+        font-size: 12px;
+    }
+    #p3{
+        font-size: 8px;
     }
 }

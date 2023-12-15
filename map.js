@@ -204,24 +204,35 @@ function createGeoJSONLayer(data, line) {
                 //
                 marker.on('click', function() {
                     map.setView(latlng, 4);
-                    marker.popupTimeout = setTimeout(function() {
-                        marker.bindPopup(`
-                            <div class="img_text">
-                                <p id="text_nam"><strong>${feature.properties.chang} (${feature.properties.id})</strong></p>
-                                <p id="text_nam"><strong>${feature.properties.place}</strong></p>
-                                <p id="text_p">&nbsp ${feature.properties.noi_dung}</p>
-                                ${feature.properties.trung1}
-                            </div>
-                        `
-                        ).openPopup();
-                    }, 300);
-                    isInfoVisible = false;
-                    info.classList.remove("active");
-                    info.classList.add("inactive");
-
                 });
                 return marker;
             },
+            onEachFeature: function(feature, marker) {
+                var content_popup = `
+                <div class="img_text">
+                    <p id="text_nam"><strong>${feature.properties.chang} (${feature.properties.id.toString().slice(0,1)})</strong></p>
+                    <p id="text_nam"><strong>${feature.properties.place}</strong></p>
+                    <p id="text_p">&nbsp ${feature.properties.noi_dung}</p>
+                    ${feature.properties.trung1}
+                </div>
+                `;
+                var popupOpened = false;
+                marker.on('click', function() {
+                    if (!popupOpened) {
+                        setTimeout(function() {
+                            marker.bindPopup(content_popup).openPopup();
+                            popupOpened = true;
+                            marker.unbindPopup();
+                        }, 1000); // 1000 milliseconds = 1 second
+                    } else {
+                        setTimeout(function() {
+                        marker.unbindPopup().bindPopup(content_popup).openPopup();
+                        popupOpened = false;
+                        marker.unbindPopup();
+                    }, 1000);
+                    }
+                });
+            }
         }),
         
         L.geoJSON(line, {
@@ -470,12 +481,14 @@ legendControl.onAdd = function () {
 };
 
 //---------------------------------------------------------------------------------------------------------------------------------
+//Chúng tôi sử dụng bản đồ thế giới hiện đại để người xem hiện nay dễ hình dung các điểm đến dọc theo hành trình của Bác Hồ.
 
 var legendControl2 = L.control({ position: 'bottomleft' });
 legendControl2.onAdd = function () {
     var div = L.DomUtil.create('div', 'info legend');
     div.innerHTML = `
-    <p id="p2"> Thực hiện: MAI THƯ LÂM </p>
+    <p id="p2"> Thực hiện: MAI THƯ LÂM
+    </p>
     <input id = "i" type="button" value = "i" onclick="open_info3()">
     `;
     return div;
@@ -486,3 +499,11 @@ function open_info3() {
     const paragraph = document.getElementById('p2');
     paragraph.style.opacity = (parseFloat(paragraph.style.opacity) === 1) ? 0 : 1;
 }
+var legendControl3 = L.control({ position: 'bottomleft' });
+legendControl3.onAdd = function () {
+    var div = L.DomUtil.create('div', 'info legend');
+    div.innerHTML = `<p id="p3">  Bản đồ thế giới hiện đại được sử dụng để người xem dễ hình dung các địa điểm dọc theo hành trình của Bác Hồ.</p>
+    `;
+    return div;
+};
+legendControl3.addTo(map);
