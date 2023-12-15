@@ -1,3 +1,5 @@
+
+//-------------------------------------------------------------------------------------------------------------------------
 setTimeout(function () {
     location.reload();
   }, 60000*5);
@@ -28,33 +30,23 @@ document.getElementById("nut").addEventListener("click",
             isInfoVisible = false;
             info.classList.remove("active");
             info.classList.add("inactive");
-            map.setView([20.552, 23.21484], calculateZoom());
+            map.setView([15.640470684336918, 106.0246588180541], calculateZoom());
         } else {
             info.style.zIndex = "1001";
             info.style.display = "block";
             info.classList.remove("inactive");
             info.classList.add("active");
             isInfoVisible = true;
-            map.setView([20.552, 55.21484], calculateZoom());
+            map.setView([15.640470684336918, 111.0246588180541], calculateZoom());
         }
     });
 
-document.getElementById("nut2").addEventListener("click", 
-    function toggleInfo() {
-        if (isInfoVisible2) {
-            isInfoVisible2 = false;
-            legendControl.remove(map);
-        } else {
-            isInfoVisible2 = true;
-            legendControl.addTo(map);
-        }
-    });
 
 
 //-------------------------------------------------------------------------------------------------------------------------
 var map = new L.map('map', {
     tap: false,
-    center: [20.552, 55.21484],
+    center: [15.640470684336918, 111.0246588180541],
     zoom: calculateZoom(), // Sử dụng hàm tính toán mức zoom
     minZoom: calculateZoom(), // Giới hạn zoom
     maxBounds: L.latLngBounds(L.latLng(-75, -190.55), L.latLng(75, 300)), // Giới hạn tọa độ
@@ -69,7 +61,7 @@ function calculateZoom() {
     } else if (screenWidth < 1537) {
         return 2;
     } else {
-        return 3;
+        return 6;
     }
 }
 //-------------------------------------------------------------------------------------------------------------------------
@@ -99,25 +91,7 @@ function getV2Basemap(style) {
 //Bộ chọn bản đồ nền Esri
 
 const basemapLayers = {
-
-    "arcgis/outdoor": getV2Basemap("arcgis/outdoor"),
-    "arcgis/community": getV2Basemap("arcgis/community"),
-    "arcgis/navigation": getV2Basemap("arcgis/navigation"),
-    "arcgis/streets": getV2Basemap("arcgis/streets"),
-    "arcgis/streets-relief": getV2Basemap("arcgis/streets-relief"),
-    "arcgis/imagery": getV2Basemap("arcgis/imagery"),
-    "arcgis/oceans": getV2Basemap("arcgis/oceans"),
-    "arcgis/topographic": getV2Basemap("arcgis/topographic"),
-    "arcgis/light-gray": getV2Basemap("arcgis/light-gray"),
-    "arcgis/dark-gray": getV2Basemap("arcgis/dark-gray"),
-    "arcgis/human-geography": getV2Basemap("arcgis/human-geography"),
-    "arcgis/charted-territory": getV2Basemap("arcgis/charted-territory").addTo(map),
-    "arcgis/nova": getV2Basemap("arcgis/nova"),
-    "osm/standard": getV2Basemap("osm/standard"),
-    "osm/navigation": getV2Basemap("osm/navigation"),
-    "osm/streets": getV2Basemap("osm/streets"),
-    "osm/blueprint": getV2Basemap("osm/blueprint")
-    
+    "arcgis/streets-relief": getV2Basemap("arcgis/streets-relief").addTo(map),
 };
                 
 //L.control.layers(basemapLayers).addTo(map);
@@ -188,7 +162,7 @@ function content_popup() {
 }
 
 // Define the createGeoJSONLayer function
-function createGeoJSONLayer(data, line) {
+function createGeoJSONLayer(data) {
     return [
         L.geoJSON(data, {
             pointToLayer: function(feature, latlng) {
@@ -197,7 +171,7 @@ function createGeoJSONLayer(data, line) {
                         className: 'my-div-icon',
                         html: `
                         <div class="icon-text"><strong>${feature.properties.id}</strong></div>
-                            <img src="https://cdn.glitch.global/90845d8e-81a9-424d-b13a-0acd2c0b3b63/8603698.png?v=1700463807212" class="icon-image"/>`,
+                            <img src="img/XTN.svg" class="icon-image"/>`,
                         iconSize: [40, 35]
                     })
                 });
@@ -234,28 +208,6 @@ function createGeoJSONLayer(data, line) {
                 });
             }
         }),
-        
-        L.geoJSON(line, {
-            onEachFeature: function (feature, layer) {
-                var screenWidth = window.innerWidth;
-                if (screenWidth < 1537) {
-                    layer.setText(`         ►         `+"", {offset: 3,attributes: {fill: `${feature.properties.color}`,'font-size':"10px"}, orientation: '', center: false,repeat: true});
-                    layer.setStyle({
-                        'color': feature.properties.color,
-                        'dashArray': feature.properties.dashArray,
-                        'weight': 2,
-                    });
-                } else {
-                    layer.setText(`          ►           `+"", {offset: 5,attributes: {fill: `${feature.properties.color}`,'font-size':"15px"}, orientation: '', center: false,repeat: true});
-                    layer.setStyle({
-                        'color': feature.properties.color,
-                        'dashArray': feature.properties.dashArray,
-                        'weight': 3,
-                    });
-                };
-                layer.bindPopup(`<div class="text-center"><strong> ${feature.properties.chang}</strong></div>`);
-            }
-        })
     ];
 }
 
@@ -270,12 +222,13 @@ function createGeoJSONLayer1(data) {
                         className: 'my-div-icon',
                         html: 
                         //<div class="icon-text"><strong>${feature.properties.id}</strong></div>
-                            `<img src="https://cdn.glitch.global/90845d8e-81a9-424d-b13a-0acd2c0b3b63/8603698.png?v=1700463807212" class="icon-image"/>`,
+                            `<img src="img/XTN.svg" class="icon-image"/>`,
                         iconSize: [20, 20]
                     })
                 });
                 marker.on('click', function() {
-                    map.setView(latlng, 4);
+                    var customLatLng = L.latLng(latlng.lat + .3, latlng.lng + 0.3);
+                    map.flyTo(customLatLng, 9);
                     isInfoVisible = false;
                     info.classList.remove("active");
                     info.classList.add("inactive");
@@ -284,13 +237,47 @@ function createGeoJSONLayer1(data) {
                 return marker;
             },
             onEachFeature: function(feature, marker) {
-                var content_popup = `
-                <div class="img_text">
-                    <p id="text_nam"><strong>${feature.properties.chang} (${feature.properties.id})</strong></p>
-                    <p id="text_nam"><strong>${feature.properties.place}</strong></p>
-                    <p id="text_p">&nbsp ${feature.properties.noi_dung}</p>
-                    ${feature.properties.trung1}
-                </div>
+                var content_popup = 
+                `    <div class="img_main">
+                        <div class="slideshow-container">
+                            <div class="mySlides" class="fade" id="s1">
+                            <img class="noidung_img" src='${feature.properties.img_url1}'>
+                            </div>
+                        
+                            <div class="mySlides" class="fade" id="s2">
+                            <img class="noidung_img" src='${feature.properties.img_url2}' >
+                            </div>
+                        
+                            <div class="mySlides" class="fade" id="s3">
+                            <img class="noidung_img" src='${feature.properties.img_url3}'>
+                            </div>
+
+                            <div class="mySlides" class="fade" id="s4">
+                            <img class="noidung_img" src='${feature.properties.img_url4}'>
+                            </div>
+
+                            <div class="mySlides" class="fade" id="s5">
+                            <img class="noidung_img" src='${feature.properties.img_url5}'>
+                            </div>
+                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                            <div class="dott">
+                            <span class="dot" id="dot1" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                            <span class="dot" onclick="currentSlide(4)"></span>
+                            <span class="dot" onclick="currentSlide(5)"></span>
+                        </div>
+                        </div>
+                        <div>
+                            <div class="img_text">
+                                <p id="text_nam"><strong>Khoa ${feature.properties.khoa}</strong></p>
+                                <p id="text_nam"><strong>NĂM ${feature.properties.nam}</strong></p>
+                                <p id="text_nam">${feature.properties.t_add}</p>
+                                <p id="text_p">${feature.properties.t_p.slice(1,-1)}</p>
+                            </div>
+                        </div>
+                    </div>
                 `;
                 var popupOpened = false;
                 marker.on('click', function() {
@@ -299,13 +286,13 @@ function createGeoJSONLayer1(data) {
                             marker.bindPopup(content_popup).openPopup();
                             popupOpened = true;
                             marker.unbindPopup();
-                        }, 1000*0.2); // 1000 milliseconds = 1 second
+                        }, 1000*0.5); // 1000 milliseconds = 1 second
                     } else {
                         setTimeout(function() {
                         marker.unbindPopup().bindPopup(content_popup).openPopup();
                         popupOpened = false;
                         marker.unbindPopup();
-                    }, 1000*0.2);
+                    }, 1000*0.5);
                     }
                 });
             }
@@ -316,23 +303,17 @@ function createGeoJSONLayer1(data) {
 }
 // Create GeoJSON layers
 var [data00] = createGeoJSONLayer1(data00);
-var [data1, line1] = createGeoJSONLayer(data1, line1);
-var [data2, line2] = createGeoJSONLayer(data2, line2);
-var [data3, line3] = createGeoJSONLayer(data3, line3);
-var [data4, line4] = createGeoJSONLayer(data4, line4);
-var [data5, line5] = createGeoJSONLayer(data5, line5);
-var [data6, line6] = createGeoJSONLayer(data6, line6);
-var [data7, line7] = createGeoJSONLayer(data7, line7);
-var [data8, line8] = createGeoJSONLayer(data8, line8);
-var [data9, line9] = createGeoJSONLayer(data9, line9);
-var [data10, line10] = createGeoJSONLayer(data10, line10);
+var [data1] = createGeoJSONLayer(data1);
+var [data2] = createGeoJSONLayer(data2);
+var [data3] = createGeoJSONLayer(data3);
+var [data4] = createGeoJSONLayer(data4);
 
-var line00 = L.layerGroup([line1, line2, line3, line4, line5, line6, line7, line8, line9, line10,data00]).addTo(map);
+L.layerGroup([data00]).addTo(map);
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
 // Define the toggleLayer function
-function toggleLayer(dataLayer, lineLayer) {
+function toggleLayer(dataLayer) {
     map.closePopup();
     // Remove all layers from the map
     map.eachLayer(function (mapLayer) {
@@ -343,23 +324,11 @@ function toggleLayer(dataLayer, lineLayer) {
     });
     // Add the selected layers to the map
     dataLayer.addTo(map);
-    lineLayer.addTo(map);
     isInfoVisible = false;
     info.classList.remove("active");
     info.classList.add("inactive");
-    function getCenterOfDataLayer(lineLayer) {
-        // Get the bounds of the 
-        var bounds = lineLayer.getBounds();
-        if (bounds.isValid()) {
-            // If the bounds are valid, return the center of the bounds
-            return bounds.getCenter();
-        } else {
-            // If the bounds are not valid, return null or handle the case accordingly
-            return null;
-        }
-    }
-    // Sử dụng hàm để lấy điểm trung tâm của 
-    var centerPoint = getCenterOfDataLayer(lineLayer);
+
+
     
     if (centerPoint !== null) {
         // Sử dụng điểm trung tâm, ví dụ:
@@ -386,16 +355,16 @@ function toggleLayer1() {
     var screenWidth = window.innerWidth;
     if (screenWidth < 1537) {
         setTimeout(function () {
-            L.layerGroup([line1, line2, line3, line4, line5, line6, line7, line8, line9, line10, data00]).addTo(map);
+            L.layerGroup([data00]).addTo(map);
         }, 300);
     } else {
-        L.layerGroup([line1, line2, line3, line4, line5, line6, line7, line8, line9, line10, data00]).addTo(map);
+        L.layerGroup([data00]).addTo(map);
     }
     // Add the selected layers to the map
     isInfoVisible = false;
     info.classList.remove("active");
     info.classList.add("inactive");
-    map.setView([20.552, 23.21484], calculateZoom());
+    map.setView([15.640470684336918, 106.0246588180541], calculateZoom());
     dao.addTo(map);
     legendControl.addTo(map);
     isInfoVisible2 = true;
@@ -404,81 +373,6 @@ function toggleLayer1() {
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-// Tạo control chú giải
-var legendControl = L.control({ position: 'bottomleft' });
-
-legendControl.onAdd = function () {
-    var div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML = `
-    <div id="info2" >
-    <h4>Chú giải</h4>
-    <ul class="chugiai_ul">
-        <li class="chugiai_li"> 
-            <div class="chugiai_line line0">
-            </div>
-            <p> Hành trình trên bộ</p>
-        </li>
-        <li class="chugiai_li"> 
-            <div class="chugiai_line line1">
-            </div>
-            <p> Hành trình trên biển</p>
-        </li>
-        <li class="chugiai_li"> 
-            <div class="chugiai_line line2">
-            </div>
-            <p> Chặng 1: Cảng Sài Gòn - Le Havre</p>
-        </li>
-        <li class="chugiai_li"> 
-            <div class="chugiai_line line3">
-            </div>
-            <p> Chặng 2: Vòng quanh châu Phi</p>
-        </li>
-        <li class="chugiai_li"> 
-            <div class="chugiai_line line4">
-            </div>
-            <p> Chặng 3: Pháp - Châu Mỹ - Anh</p>
-        </li>
-        <li class="chugiai_li"> 
-            <div class="chugiai_line line5">
-            </div>
-            <p> Chặng 4: Pháp - Liên Xô</p>
-        </li>
-        <li class="chugiai_li"> 
-            <div class="chugiai_line line6">
-            </div>
-            <p> Chặng 5: Moskva - Quảng Châu </p>
-        </li>
-        <li class="chugiai_li"> 
-            <div class="chugiai_line line7">
-            </div>
-            <p> Chặng 6: Moskva - Xiêm</p>
-        </li>
-        <li class="chugiai_li"> 
-            <div class="chugiai_line line8">
-            </div>
-            <p> Chặng 7: Hong Kong - Thượng Hải</p>
-        </li>
-        <li class="chugiai_li"> 
-            <div class="chugiai_line line9">
-            </div>
-            <p> Chặng 8: Thượng Hải - Moskva</p>
-        </li>
-        <li class="chugiai_li"> 
-            <div class="chugiai_line line10">
-            </div>
-            <p> Chặng 9: Moskva - Quế Lâm</p>
-        </li>
-        <li class="chugiai_li"> 
-            <div class="chugiai_line line11">
-            </div>
-            <p> Chặng 10: Quế Lâm - Pác Pó</p>
-        </li>
-    </ul>
-    </div>
-    
-    `;
-    return div;
-};
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
@@ -498,11 +392,3 @@ function open_info3() {
     const paragraph = document.getElementById('p2');
     paragraph.style.opacity = (parseFloat(paragraph.style.opacity) === 1) ? 0 : 1;
 }
-var legendControl3 = L.control({ position: 'bottomleft' });
-legendControl3.onAdd = function () {
-    var div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML = `<p id="p3">  Bản đồ thế giới hiện đại được sử dụng để người xem dễ hình dung các địa điểm dọc theo hành trình của Bác Hồ.</p>
-    `;
-    return div;
-};
-legendControl3.addTo(map);
