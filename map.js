@@ -243,7 +243,7 @@ function createGeoJSONLayer(data, line) {
                     layer.setStyle({
                         'color': feature.properties.color,
                         'dashArray': feature.properties.dashArray,
-                        'weight': 1.5,
+                        'weight': 2,
                     });
                 } else {
                     layer.setText(`          ►           `+"", {offset: 5,attributes: {fill: `${feature.properties.color}`,'font-size':"15px"}, orientation: '', center: false,repeat: true});
