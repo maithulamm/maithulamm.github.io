@@ -531,7 +531,10 @@ legend{
     bottom: .35vh;
     left: 10px;
 }
-
+#p2 a{
+    text-decoration: none;
+    color: rgb(109, 42, 42);
+}
 
 
 #i:hover{
