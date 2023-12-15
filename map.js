@@ -487,13 +487,13 @@ var legendControl2 = L.control({ position: 'bottomleft' });
 legendControl2.onAdd = function () {
     var div = L.DomUtil.create('div', 'info legend');
     div.innerHTML = `
-    <p id="p2"> Thực hiện: MAI THƯ LÂM
+    <p id="p2"> <a href="https://maithulamm.glitch.me/" target="_blank">Thực hiện: MAI THƯ LÂM</a> 
     </p>
     <input id = "i" type="button" value = "i" onclick="open_info3()">
     `;
     return div;
 };
-legendControl2.addTo(map);
+//legendControl2.addTo(map);
 
 function open_info3() {
     const paragraph = document.getElementById('p2');
