@@ -492,7 +492,7 @@ legendControl2.onAdd = function () {
     `;
     return div;
 };
-legendControl2.addTo(map);
+//legendControl2.addTo(map);
 
 function open_info3() {
     const paragraph = document.getElementById('p2');
