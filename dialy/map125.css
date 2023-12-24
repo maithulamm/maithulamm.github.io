@@ -596,11 +596,11 @@ legend{
         height: 580px;
     }
     .footpage{
-        height: 25px;
+        height: 4vh;
     }
     #info {
-        top: 90px;
-        height: 100%;
+        top: 120px;
+        height: 580px;
         width: 300px;
     }
     #nut span img{
@@ -675,5 +675,50 @@ legend{
         height: 24px;
         font-size: 12px;
     }
-
+    .long {
+        position: absolute;
+        display: flex;
+        z-index: -1 ;
+    }
+    
+    .long1 img{
+        object-fit: contain;
+        position: fixed;
+    }
+    .l1 img{
+        width: 550px;
+        height: 650px;
+        left: 1188.5px;
+        top: -120px;
+        transform: rotate(-10deg);
+    }
+    .l2 img{
+        width: 480px;
+        height: 480px;
+        left: -230px;
+        top: 400px;
+        transform: rotate(5deg);
+    }
+    .l3 img{
+        width: 300px;
+        left: -100px;
+        top: -10px;
+        transform: rotate(-20deg);
+    }
+    .l4 img{
+        width: 480px;
+        left: 1700px;
+        top: 400px;
+        transform: rotate(-100deg);
+    }
+    .l5 img{
+        width: 60px;
+        left: 300px;
+        top: 30px;
+    }
+    .l6 img{
+        width: 60px;
+        left: 1300px;
+        top: 390px;
+    }
 }
