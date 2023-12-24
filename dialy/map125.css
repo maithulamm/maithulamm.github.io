@@ -273,7 +273,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 3.9vh;
+    height: 29px;
     background-image: linear-gradient(rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0.5) ),url("img/back.png");
     z-index: 1000;
 }
@@ -301,7 +301,6 @@ body{
     text-align: center;
     background-color: #fff;
     border-radius: 50%;;
-    padding: 2px;
 }
 
 .icon-text {
@@ -313,11 +312,9 @@ body{
     height: 12px;
     background-color: white;
     font-family: 'Signika', sans-serif;
-    border-radius: 30%;
-    
+    border-radius: 10px;
+    padding-bottom: 18px;
 }
-
-
 
 .animated-marker-icon {
     background-color: red;
@@ -329,7 +326,7 @@ body{
     display: block;
     position: absolute;
     top: 150px;
-    left: 35px;
+    left: 45px;
     min-width: 4.2vw;
     max-width: 30vw;
     padding: 0;
@@ -346,12 +343,12 @@ body{
 }
 .checkmark {
     display: block;
-    width: 220px;
+    width: 200px;
     height: 70px;
     border: 3px #f7bc39;
     border-radius: 40px;
     border-style: solid;
-    font-size: 20px;
+    font-size: 17px;
     font-family: 'Signika', sans-serif;
     color: #f43900;
     cursor: pointer;
@@ -392,11 +389,11 @@ input:checked ~ .d1 {
 .detail{
     display: none;
     position: absolute;
-    width: 350px;
-    top: 1.5vh;
+    width: 340px;
+    top: .5vh;
     left: 320px;
     z-index: 401;
-    font-size: 20px;
+    font-size: 17px;
     font-family: 'Time new roman';
     font-weight: 999;
     font-style: italic;
@@ -591,6 +588,21 @@ legend{
 
 
 @media screen and (max-width: 1537px) {
+    .background{
+        height: 120px;
+    }
+    #map {
+        width: 937px;
+        height: 580px;
+    }
+    .footpage{
+        height: 25px;
+    }
+    #info {
+        top: 90px;
+        height: 100%;
+        width: 300px;
+    }
     #nut span img{
         height: 23px;
         width: 23px;
@@ -604,17 +616,34 @@ legend{
     #ft{
         font-size: 45%;
     }
+    .container{
+
+        height: 40px;
+        margin: 20px 0px;
+        
+    }
     .checkmark {
         font-size: 12px;
+        width: 150px;
+        height: 40px;
+    }
+    .box{
+        left: 75px;
     }
     .detail {
-        font-size: 12px;
+        font-size: 10px;
+        width: 180px;
+        top: 0px;
+        left: 290px;
     }
     input:checked ~ .checkmark {
         font-size: 13px;
     }
     #info2 {
         width: 280px;
+    }
+    .info_p{
+        font-size: 16px;
     }
     .info h4 {
         font-size: 14px;

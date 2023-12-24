@@ -58,9 +58,9 @@ var map = new L.map('map', {
 function calculateZoom() {
     var screenWidth = window.innerWidth;
     if (screenWidth < 1000) {
-        return 2; 
+        return 5; 
     } else if (screenWidth < 1537) {
-        return 2;
+        return 5;
     } else {
         return 6;
     }
@@ -124,7 +124,7 @@ function updateIslandLabels() {
     var zoom = map.getZoom();
     markersLayer.clearLayers();
     islands.forEach(function(island) {
-        if (zoom >= 6) {
+        if (zoom >= 4) {
             var icon = L.divIcon({
                 className: 'custom-icon',
                 html: `<div >${island.name}</div>`,
