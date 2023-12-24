@@ -50,7 +50,7 @@
 }
 
 .prev:hover, .next:hover {
-  background-color: #dd7026;
+  background-color: #fed96e;
 }
 .info_prev{
   left: 0px;
@@ -96,10 +96,10 @@
   cursor: pointer;
 }
 #dot1{
-  background-color: #dd7026;
+  background-color: #fed96e;
 }
 .active {
-  background-color: #dd7026;
+  background-color: #fed96e;
 }
 
 .img_text{

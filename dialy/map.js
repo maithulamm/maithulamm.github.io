@@ -179,7 +179,7 @@ function createGeoJSONLayer(data) {
                 //
                 marker.on('click', function() {
                     var customLatLng = L.latLng(latlng.lat + .3, latlng.lng + 0.3);
-                    map.flyTo(customLatLng, 10);
+                    map.flyTo(customLatLng, 10, {duration : .5});
                     isInfoVisible = false;
                     info.classList.remove("active");
                     info.classList.add("inactive");
@@ -191,23 +191,23 @@ function createGeoJSONLayer(data) {
                 `    <div class="img_main">
                         <div class="slideshow-container">
                             <div class="mySlides" class="fade" id="s1">
-                            <a href="https://maithulamm.github.io/dialy/'${feature.properties.img_url1}'" target="_blank"><img class="noidung_img" src='${feature.properties.img_url1}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url1}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url1}'></a>
                             </div>
                         
                             <div class="mySlides" class="fade" id="s2">
-                            <a href="https://maithulamm.github.io/dialy/'${feature.properties.img_url2}'" target="_blank"><img class="noidung_img" src='${feature.properties.img_url2}' </a>>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url2}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url2}' </a>>
                             </div>
                         
                             <div class="mySlides" class="fade" id="s3">
-                            <a href="https://maithulamm.github.io/dialy/'${feature.properties.img_url3}'" target="_blank"><img class="noidung_img" src='${feature.properties.img_url3}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url3}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url3}'></a>
                             </div>
 
                             <div class="mySlides" class="fade" id="s4">
-                            <a href="https://maithulamm.github.io/dialy/'${feature.properties.img_url4}'" target="_blank"><img class="noidung_img" src='${feature.properties.img_url4}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url4}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url4}'></a>
                             </div>
 
                             <div class="mySlides" class="fade" id="s5">
-                            <a href="https://maithulamm.github.io/dialy/'${feature.properties.img_url5}'" target="_blank"><img class="noidung_img" src='${feature.properties.img_url5}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url5}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url5}'></a>
                             </div>
                             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                             <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -279,23 +279,23 @@ function createGeoJSONLayer1(data) {
                 `    <div class="img_main">
                         <div class="slideshow-container">
                             <div class="mySlides" class="fade" id="s1">
-                            <a href="https://maithulamm.github.io/dialy/'${feature.properties.img_url1}'" target="_blank"><img class="noidung_img" src='${feature.properties.img_url1}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url1}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url1}'></a>
                             </div>
                         
                             <div class="mySlides" class="fade" id="s2">
-                            <a href="https://maithulamm.github.io/dialy/'${feature.properties.img_url1}'" target="_blank"><img class="noidung_img" src='${feature.properties.img_url2}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url2}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url2}'></a>
                             </div>
                         
                             <div class="mySlides" class="fade" id="s3">
-                            <a href="https://maithulamm.github.io/dialy/'${feature.properties.img_url1}'" target="_blank"><img class="noidung_img" src='${feature.properties.img_url3}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url3}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url3}'></a>
                             </div>
 
                             <div class="mySlides" class="fade" id="s4">
-                            <a href="https://maithulamm.github.io/dialy/'${feature.properties.img_url1}'" target="_blank"><img class="noidung_img" src='${feature.properties.img_url4}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url4}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url4}'></a>
                             </div>
 
                             <div class="mySlides" class="fade" id="s5">
-                            <a href="https://maithulamm.github.io/dialy/'${feature.properties.img_url1}'" target="_blank"><img class="noidung_img" src='${feature.properties.img_url5}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url5}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url5}'></a>
                             </div>
                             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                             <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -440,7 +440,7 @@ legendControl2.onAdd = function () {
     `;
     return div;
 };
-legendControl2.addTo(map);
+//legendControl2.addTo(map);
 
 function open_info3() {
     const paragraph = document.getElementById('p2');
