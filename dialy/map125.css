@@ -550,7 +550,7 @@ legend{
 
 .long1 img{
     object-fit: contain;
-    position: absolute;
+    position: fixed;
 }
 .l1 img{
     width: 650px;
@@ -558,8 +558,6 @@ legend{
     left: 1548.5px;
     top: -90px;
     transform: rotate(-10deg);
-    object-fit: cover;
-    object-position: 50% 5%;
 }
 .l2 img{
     width: 580px;
@@ -579,7 +577,6 @@ legend{
     left: 1700px;
     top: 400px;
     transform: rotate(-100deg);
-    object-fit: cover;
 }
 .l5 img{
     width: 80px;
