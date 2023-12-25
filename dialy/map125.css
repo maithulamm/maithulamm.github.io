@@ -335,8 +335,8 @@ body{
     padding-left: 0px !important;
     padding-right: 0px !important;
     margin-bottom: 0px !important;
-    height: 65px;
-    margin: 20px 0px;
+    height: 60px;
+    margin: 18px 0px;
 }
 .container input{
     display: none;
@@ -344,11 +344,11 @@ body{
 .checkmark {
     display: block;
     width: 200px;
-    height: 70px;
+    height: 61px;
     border: 3px #f7bc39;
     border-radius: 40px;
     border-style: solid;
-    font-size: 17px;
+    font-size: 16px;
     font-family: 'Signika', sans-serif;
     color: #f43900;
     cursor: pointer;
@@ -370,7 +370,7 @@ input:checked ~ .checkmark {
     background-repeat: no-repeat;
     background-size: cover;
     color: #f43900;
-    font-size: 20px;
+    font-size: 16.5px;
     font-weight: bold;
     border-color: #f43900;
 }
@@ -577,11 +577,12 @@ legend{
     transform: rotate(-100deg);
 }
 .l5 img{
-    width: 80px;
-    left: 300px;
+    width: 70px;
+    left: 350px;
+    top: 30px;
 }
 .l6 img{
-    width: 80px;
+    width: 70px;
     left: 1700px;
     top: 500px;
 }
@@ -601,7 +602,10 @@ legend{
     #info {
         top: 120px;
         height: 580px;
-        width: 300px;
+        width: 299px;
+    }
+    #info::-webkit-scrollbar{
+        width: 5px;
     }
     #nut span img{
         height: 23px;
@@ -641,9 +645,6 @@ legend{
     }
     #info2 {
         width: 280px;
-    }
-    .info_p{
-        font-size: 16px;
     }
     .info h4 {
         font-size: 14px;
@@ -707,8 +708,8 @@ legend{
     }
     .l4 img{
         width: 480px;
-        left: 1700px;
-        top: 400px;
+        left: 1320px;
+        top: 250px;
         transform: rotate(-100deg);
     }
     .l5 img{
