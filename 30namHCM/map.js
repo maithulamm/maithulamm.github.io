@@ -364,7 +364,7 @@ function toggleLayer(dataLayer, lineLayer) {
     if (centerPoint !== null) {
         // Sử dụng điểm trung tâm, ví dụ:
         console.log("Center Point:", centerPoint);
-        map.setView(centerPoint, 3);
+        map.setView(centerPoint, 4);
     } else {
         console.log("Invalid bounds");
     }
