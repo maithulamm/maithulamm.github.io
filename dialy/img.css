@@ -96,8 +96,6 @@
 }
 #text_nam{
   text-align: center;
-  font-family: 'Francois One', sans-serif;
-  font-family: 'Lobster', sans-serif;
   font-family: 'Signika', sans-serif;
   font-size: 1.6vh;
   top: 0px;
@@ -105,8 +103,6 @@
 }
 #text_p{
   text-align: justify; 
-  font-family: 'Francois One', sans-serif;
-  font-family: 'Lobster', sans-serif;
   font-family: 'Signika', sans-serif;
   font-size: 100%;
   margin: .8vh .2vw .3vh .2vw;

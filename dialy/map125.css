@@ -73,7 +73,7 @@ body{
     font-style: italic;
 }}*/
 .info_p{
-    padding: 15px 15px 0px 20px;
+    padding: 1vh 1vw;
     font-size: 2.5vh;
     color: #f43900;
     font-family: 'Signika', sans-serif;
@@ -201,9 +201,6 @@ body{
     width: 70vw;
     height: 81vh;
     left: 15vw;
-    border-color: antiquewhite;
-    border: #FFFFFF;
-    border-width: 5px;
 }
 #m {
     border-color: antiquewhite;
