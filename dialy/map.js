@@ -31,14 +31,14 @@ document.getElementById("nut").addEventListener("click",
             isInfoVisible = false;
             info.classList.remove("active");
             info.classList.add("inactive");
-            map.setView([15.640470684336918, 106.0246588180541], calculateZoom());
+            map.setView([16.0470684336918, 106.0246588180541], calculateZoom());
         } else {
             info.style.zIndex = "1001";
             info.style.display = "block";
             info.classList.remove("inactive");
             info.classList.add("active");
             isInfoVisible = true;
-            map.setView([15.640470684336918, 111.0246588180541], calculateZoom());
+            map.setView([16.0470684336918, 111.0246588180541], calculateZoom());
         }
     });
 
@@ -47,7 +47,7 @@ document.getElementById("nut").addEventListener("click",
 //-------------------------------------------------------------------------------------------------------------------------
 var map = new L.map('map', {
     tap: false,
-    center: [15.640470684336918, 111.0246588180541],
+    center: [16.0470684336918, 111.0246588180541],
     zoom: calculateZoom(), // Sử dụng hàm tính toán mức zoom
     minZoom: calculateZoom(), // Giới hạn zoom
     maxBounds: L.latLngBounds(L.latLng(-75, -190.55), L.latLng(75, 300)), // Giới hạn tọa độ
@@ -58,7 +58,7 @@ var map = new L.map('map', {
 function calculateZoom() {
     var screenWidth = window.innerWidth;
     if (screenWidth < 1000) {
-        return 5; 
+        return 4; 
     } else if (screenWidth < 1537) {
         return 5;
     } else {
@@ -195,7 +195,7 @@ function createGeoJSONLayer(data) {
                             </div>
                         
                             <div class="mySlides" class="fade" id="s2">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url2}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url2}' </a>>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url2}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url2}'></a>
                             </div>
                         
                             <div class="mySlides" class="fade" id="s3">
@@ -419,7 +419,7 @@ function toggleLayer1() {
     isInfoVisible = false;
     info.classList.remove("active");
     info.classList.add("inactive");
-    map.flyTo([15.640470684336918, 106.0246588180541], calculateZoom());
+    map.flyTo([16.0470684336918, 106.0246588180541], calculateZoom());
     dao.addTo(map);
     legendControl.addTo(map);
     isInfoVisible2 = true;
@@ -427,22 +427,3 @@ function toggleLayer1() {
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-
-//---------------------------------------------------------------------------------------------------------------------------------
-
-var legendControl2 = L.control({ position: 'bottomleft' });
-legendControl2.onAdd = function () {
-    var div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML = `
-    <p id="p2"> <a href="https://maithulamm.github.io/dialy/'${feature.properties.img_url1}'" target="_blank">Thực hiện: MAI THƯ LÂM</a> 
-    </p>
-    <input id = "i" type="button" value = "i" onclick="open_info3()">
-    `;
-    return div;
-};
-//legendControl2.addTo(map);
-
-function open_info3() {
-    const paragraph = document.getElementById('p2');
-    paragraph.style.opacity = (parseFloat(paragraph.style.opacity) === 1) ? 0 : 1;
-}
