@@ -31,14 +31,14 @@ document.getElementById("nut").addEventListener("click",
             isInfoVisible = false;
             info.classList.remove("active");
             info.classList.add("inactive");
-            map.setView([16.0470684336918, 106.0246588180541], calculateZoom());
+            map.setView([11.014, 106.830], calculateZoom());
         } else {
             info.style.zIndex = "1001";
             info.style.display = "block";
             info.classList.remove("inactive");
             info.classList.add("active");
             isInfoVisible = true;
-            map.setView([16.0470684336918, 111.0246588180541], calculateZoom());
+            map.setView([11.014, 107.830], calculateZoom());
         }
     });
 
@@ -47,7 +47,7 @@ document.getElementById("nut").addEventListener("click",
 //-------------------------------------------------------------------------------------------------------------------------
 var map = new L.map('map', {
     tap: false,
-    center: [16.0470684336918, 111.0246588180541],
+    center: [11.014, 107.830],
     zoom: calculateZoom(), // Sử dụng hàm tính toán mức zoom
     minZoom: calculateZoom(), // Giới hạn zoom
     maxBounds: L.latLngBounds(L.latLng(-75, -190.55), L.latLng(75, 300)), // Giới hạn tọa độ
@@ -58,11 +58,11 @@ var map = new L.map('map', {
 function calculateZoom() {
     var screenWidth = window.innerWidth;
     if (screenWidth < 1000) {
-        return 4; 
+        return 6; 
     } else if (screenWidth < 1537) {
-        return 5;
+        return 7;
     } else {
-        return 6;
+        return 8;
     }
 }
 //-------------------------------------------------------------------------------------------------------------------------
@@ -140,14 +140,14 @@ map.on('zoomend', updateIslandLabels);
 updateIslandLabels();
     
 //---------------------------------------------------------------------------------------------------------------------------------
-               /* popup = L.popup()
+              /* popup = L.popup()
                 function onMapClick(e) {
                     popup
                         .setLatLng(e.latlng)   
-                        .setContent('<div class="text-center"> <strong> Tọa độ được chọn '+ '<br>' + '(vĩ độ, kinh độ) = '  +'('+ e.latlng.toString().slice(7,13)+', '+ e.latlng.toString().slice(18,25)+')' + '</strong> </div>')
+                        .setContent('<div class="text-center"> <strong> Tọa độ được chọn '+ '<br>' + '(vĩ độ, kinh độ) = '  +'('+ e.latlng.toString().slice(7,13)+', '+ e.latlng.toString().slice(17,25)+')' + '</strong> </div>')
                         .openOn(map);
                 }
-                //map.on('click', onMapClick); */
+                map.on('click', onMapClick); */
 //---------------------------------------------------------------------------------------------------------------------------------
     
 //---------------------------------------------------------------------------------------------------------------------------------
@@ -355,7 +355,7 @@ data00.addTo(map);
 //---------------------------------------------------------------------------------------------------------------------------------
 
 // Define the toggleLayer function
-function toggleLayer(dataLayer) {
+function toggleLayer(dataLayer,zoom) {
     map.closePopup();
     // Remove all layers from the map
     map.eachLayer(function (mapLayer) {
@@ -387,7 +387,7 @@ function toggleLayer(dataLayer) {
     if (centerPoint !== null) {
         // Sử dụng điểm trung tâm, ví dụ:
         console.log("Center Point:", centerPoint);
-        map.flyTo(centerPoint, 8);
+        map.flyTo(centerPoint, zoom);
     } else {
         console.log("Invalid bounds");
     }
@@ -419,7 +419,7 @@ function toggleLayer1() {
     isInfoVisible = false;
     info.classList.remove("active");
     info.classList.add("inactive");
-    map.flyTo([16.0470684336918, 106.0246588180541], calculateZoom());
+    map.flyTo([11.014, 106.830], calculateZoom());
     dao.addTo(map);
     legendControl.addTo(map);
     isInfoVisible2 = true;

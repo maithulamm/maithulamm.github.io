@@ -272,10 +272,10 @@ body{
     height: 2.2vh;
     object-fit: contain;
     text-align: center;
-    background-color: #fff;
+    background-color: #ffffff;
     border-radius: 50%;;
+    
 }
-
 .icon-text {
     font-size: 1.5vh;
     margin: 0 !important; /* Reset margin to ensure proper alignment */
