@@ -172,14 +172,14 @@ function createGeoJSONLayer(data) {
                         className: 'my-div-icon',
                         html: `
                         <div class="icon-text"><strong>${feature.properties.nam}</strong></div>
-                        <img src="https://hcmussh.edu.vn/img/content/p5oGwSJt41hgdMDbJLZ-ym1r.png" class="icon-image"/>`,
+                        <img src="img/dialy.svg" class="icon-image"/>`,
                         iconSize: [50, 50]
                     })
                 });
                 //
                 marker.on('click', function() {
-                    var customLatLng = L.latLng(latlng.lat + .3, latlng.lng + 0.3);
-                    map.flyTo(customLatLng, 10, {duration : .5});
+                    var customLatLng = L.latLng(latlng.lat + .03, latlng.lng + 0.03);
+                    map.flyTo(customLatLng, 12, {duration : .5});
                     isInfoVisible = false;
                     info.classList.remove("active");
                     info.classList.add("inactive");
@@ -261,13 +261,13 @@ function createGeoJSONLayer1(data) {
                         className: 'my-div-icon',
                         html: 
                         //<div class="icon-text"><strong>${feature.properties.id}</strong></div>
-                            `<img src="https://hcmussh.edu.vn/img/content/p5oGwSJt41hgdMDbJLZ-ym1r.png" class="icon-image"/>`,
-                        iconSize: [20, 20]
+                            `<img src="img/dialy.svg" class="icon-image"/>`,
+                        iconSize: [30, 30]
                     })
                 });
                 marker.on('click', function() {
-                    var customLatLng = L.latLng(latlng.lat + .3, latlng.lng + 0.3);
-                    map.flyTo(customLatLng, 9);
+                    var customLatLng = L.latLng(latlng.lat + .03, latlng.lng + 0.03);
+                    map.flyTo(customLatLng, 11, {duration : .5});
                     isInfoVisible = false;
                     info.classList.remove("active");
                     info.classList.add("inactive");
@@ -387,7 +387,7 @@ function toggleLayer(dataLayer,zoom) {
     if (centerPoint !== null) {
         // Sử dụng điểm trung tâm, ví dụ:
         console.log("Center Point:", centerPoint);
-        map.flyTo(centerPoint, zoom);
+        map.flyTo(centerPoint, zoom, {duration : zoom/15});
     } else {
         console.log("Invalid bounds");
     }
@@ -419,7 +419,7 @@ function toggleLayer1() {
     isInfoVisible = false;
     info.classList.remove("active");
     info.classList.add("inactive");
-    map.flyTo([11.014, 106.830], calculateZoom());
+    map.flyTo([11.014, 106.830], calculateZoom(), {duration : .5});
     dao.addTo(map);
     legendControl.addTo(map);
     isInfoVisible2 = true;

@@ -65,11 +65,11 @@ var map = new L.map('map', {
 function calculateZoom() {
     var screenWidth = window.innerWidth;
     if (screenWidth < 1000) {
-        return 2; 
+        return 1; 
     } else if (screenWidth < 1537) {
         return 2;
     } else {
-        return 3;
+        return 2;
     }
 }
 //-------------------------------------------------------------------------------------------------------------------------
@@ -332,7 +332,7 @@ var line00 = L.layerGroup([line1, line2, line3, line4, line5, line6, line7, line
 //---------------------------------------------------------------------------------------------------------------------------------
 
 // Define the toggleLayer function
-function toggleLayer(dataLayer, lineLayer) {
+function toggleLayer(dataLayer, lineLayer, zoom) {
     map.closePopup();
     // Remove all layers from the map
     map.eachLayer(function (mapLayer) {
@@ -364,7 +364,7 @@ function toggleLayer(dataLayer, lineLayer) {
     if (centerPoint !== null) {
         // Sử dụng điểm trung tâm, ví dụ:
         console.log("Center Point:", centerPoint);
-        map.setView(centerPoint, 4);
+        map.flyTo(centerPoint, zoom);
     } else {
         console.log("Invalid bounds");
     }
@@ -382,6 +382,7 @@ function toggleLayer1() {
             map.removeLayer(mapLayer);
         }
     });
+    map.flyTo([20.552, 23.21484], calculateZoom());
     map.closePopup();
     var screenWidth = window.innerWidth;
     if (screenWidth < 1537) {
@@ -395,7 +396,7 @@ function toggleLayer1() {
     isInfoVisible = false;
     info.classList.remove("active");
     info.classList.add("inactive");
-    map.setView([20.552, 23.21484], calculateZoom());
+    
     dao.addTo(map);
     legendControl.addTo(map);
     isInfoVisible2 = true;

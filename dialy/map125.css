@@ -269,12 +269,9 @@ body{
 }
 
 .icon-image {
-    height: 2.2vh;
+    height: 2.6vh;
     object-fit: contain;
     text-align: center;
-    background-color: #ffffff;
-    border-radius: 50%;;
-    
 }
 .icon-text {
     font-size: 1.5vh;

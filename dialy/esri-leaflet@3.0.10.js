@@ -562,7 +562,7 @@
           }
           t.attributionControl.setPrefix(
             T +
-              '</a><a href="https://maithulamm.glitch.me/" target="_blank">Thực hiện: maithulamm</a>'
+              '</a>|<a href="https://maithulamm.glitch.me/" target="_blank">Thực hiện: <strong>maithulamm<strong></a>'
           ),
             e.DomUtil.addClass(
               t.attributionControl._container,
