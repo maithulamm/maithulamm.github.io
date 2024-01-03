@@ -83,6 +83,7 @@ body{
     font-weight: bold;
     color: rgb(20, 14, 14);
     font-family: 'Time new roman';
+    color:rgb(109, 42, 42);
 
 }
 #info{
@@ -250,6 +251,7 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
+    background-color: #ffffff00;
 }
 
 .icon-image {

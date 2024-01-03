@@ -1,6 +1,4 @@
-setTimeout(function () {
-    location.reload();
-  }, 60000*5);
+
 
 //-------------------------------------------------------------------------------------------------------------------------
 
@@ -69,7 +67,7 @@ function calculateZoom() {
     } else if (screenWidth < 1537) {
         return 2;
     } else {
-        return 2;
+        return 3;
     }
 }
 //-------------------------------------------------------------------------------------------------------------------------
@@ -198,19 +196,19 @@ function createGeoJSONLayer(data, line) {
                         html: `
                         <div class="icon-text"><strong>${feature.properties.id}</strong></div>
                             <img src="https://cdn.glitch.global/90845d8e-81a9-424d-b13a-0acd2c0b3b63/8603698.png?v=1700463807212" class="icon-image"/>`,
-                        iconSize: [40, 35]
+                        iconSize: [40, 55]
                     })
                 });
                 //
                 marker.on('click', function() {
-                    map.setView(latlng, 4);
+                    map.flyTo(latlng, 4, {duration: 1});
                 });
                 return marker;
             },
             onEachFeature: function(feature, marker) {
                 var content_popup = `
                 <div class="img_text">
-                    <p id="text_nam"><strong>${feature.properties.chang} (${feature.properties.id.toString().slice(0,1)})</strong></p>
+                    <p id="text_nam"><strong>${feature.properties.chang} (${feature.properties.id.toString().slice(0,2)})</strong></p>
                     <p id="text_nam"><strong>${feature.properties.place}</strong></p>
                     <p id="text_p">&nbsp ${feature.properties.noi_dung}</p>
                     ${feature.properties.trung1}
@@ -223,13 +221,13 @@ function createGeoJSONLayer(data, line) {
                             marker.bindPopup(content_popup).openPopup();
                             popupOpened = true;
                             marker.unbindPopup();
-                        }, 1000*0.2); // 1000 milliseconds = 1 second
+                        }, 700); // 1000 milliseconds = 1 second
                     } else {
                         setTimeout(function() {
                         marker.unbindPopup().bindPopup(content_popup).openPopup();
                         popupOpened = false;
                         marker.unbindPopup();
-                    }, 1000*0.2);
+                    }, 700);
                     }
                 });
             }
@@ -275,7 +273,7 @@ function createGeoJSONLayer1(data) {
                     })
                 });
                 marker.on('click', function() {
-                    map.setView(latlng, 4);
+                    map.setView(latlng, 4, {duration: 1});
                     isInfoVisible = false;
                     info.classList.remove("active");
                     info.classList.add("inactive");
@@ -299,13 +297,13 @@ function createGeoJSONLayer1(data) {
                             marker.bindPopup(content_popup).openPopup();
                             popupOpened = true;
                             marker.unbindPopup();
-                        }, 1000*0.2); // 1000 milliseconds = 1 second
+                        }, 300); // 1000 milliseconds = 1 second
                     } else {
                         setTimeout(function() {
                         marker.unbindPopup().bindPopup(content_popup).openPopup();
                         popupOpened = false;
                         marker.unbindPopup();
-                    }, 1000*0.2);
+                    }, 300);
                     }
                 });
             }
@@ -334,6 +332,7 @@ var line00 = L.layerGroup([line1, line2, line3, line4, line5, line6, line7, line
 // Define the toggleLayer function
 function toggleLayer(dataLayer, lineLayer, zoom) {
     map.closePopup();
+    
     // Remove all layers from the map
     map.eachLayer(function (mapLayer) {
   
@@ -341,9 +340,13 @@ function toggleLayer(dataLayer, lineLayer, zoom) {
             map.removeLayer(mapLayer);
         }
     });
-    // Add the selected layers to the map
-    dataLayer.addTo(map);
-    lineLayer.addTo(map);
+    setTimeout(function () {
+            // Add the selected layers to the map
+            dataLayer.addTo(map);
+            lineLayer.addTo(map);
+      }, (zoom/5)*1000);
+
+
     isInfoVisible = false;
     info.classList.remove("active");
     info.classList.add("inactive");
@@ -364,7 +367,7 @@ function toggleLayer(dataLayer, lineLayer, zoom) {
     if (centerPoint !== null) {
         // Sử dụng điểm trung tâm, ví dụ:
         console.log("Center Point:", centerPoint);
-        map.flyTo(centerPoint, zoom);
+        map.flyTo(centerPoint, zoom , {duration : zoom/5});
     } else {
         console.log("Invalid bounds");
     }
@@ -382,16 +385,11 @@ function toggleLayer1() {
             map.removeLayer(mapLayer);
         }
     });
-    map.flyTo([20.552, 23.21484], calculateZoom());
+    map.flyTo([20.552, 23.21484], calculateZoom(),{duration : calculateZoom()/3} );
     map.closePopup();
-    var screenWidth = window.innerWidth;
-    if (screenWidth < 1537) {
-        setTimeout(function () {
-            L.layerGroup([line1, line2, line3, line4, line5, line6, line7, line8, line9, line10, data00]).addTo(map);
-        }, 300);
-    } else {
+    setTimeout(function () {
         L.layerGroup([line1, line2, line3, line4, line5, line6, line7, line8, line9, line10, data00]).addTo(map);
-    }
+    }, (calculateZoom()/3)*1000);
     // Add the selected layers to the map
     isInfoVisible = false;
     info.classList.remove("active");
@@ -483,17 +481,7 @@ legendControl.onAdd = function () {
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-var legendControl2 = L.control({ position: 'bottomleft' });
-legendControl2.onAdd = function () {
-    var div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML = `
-    <p id="p2"> <a href="https://maithulamm.glitch.me/" target="_blank">Thực hiện: MAI THƯ LÂM</a> 
-    </p>
-    <input id = "i" type="button" value = "i" onclick="open_info3()">
-    `;
-    return div;
-};
-//legendControl2.addTo(map);
+
 
 function open_info3() {
     const paragraph = document.getElementById('p2');
