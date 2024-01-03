@@ -11,8 +11,7 @@ html::-webkit-scrollbar{
 }
 body{
     background-image: url("https://cdn.glitch.global/90845d8e-81a9-424d-b13a-0acd2c0b3b63/4b65a8b55dcdf3ee10db8703ec2b3be6.jpg?v=1700156070316");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
 }
 
 .main{
