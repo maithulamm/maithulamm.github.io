@@ -4,6 +4,7 @@
 var islands = [
     { name: "<div class = 'text-island'>"+"Quần đảo Hoàng Sa "+"<br>"+" Thành phố Đà Nẵng, Việt Nam"+"</div>", coords: [15.834536, 111.8733] },
     { name: "<div class = 'text-island'>"+"Quần đảo Trường Sa "+"<br>"+" Tỉnh Khánh Hòa, Việt Nam"+"</div>", coords: [9.627362, 113.862305] },
+    { name: "<div class = 'text-island'>"+"Vịnh Bắc Bộ - Việt Nam"+"</div>", coords: [20.227918466626072, 107.51201553962458] },
     //{name: "<div class = 'text-island'>"+"Biển Đông"+"</div>", coords: [13.304103, 113.203125] },
 ];
 
