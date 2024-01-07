@@ -562,16 +562,8 @@
           }
           t.attributionControl.setPrefix(
             T +
-              '|</a><a href="https://hcmussh.edu.vn/" target="_blank">VNUHCM-USSH</a>'
-          ),
-            e.DomUtil.addClass(
-              t.attributionControl._container,
-              "esri-truncated-attribution:hover"
-            ),
-            e.DomUtil.addClass(
-              t.attributionControl._container,
-              "esri-truncated-attribution"
-            );
+              '</a>|<a href="https://hcmussh.edu.vn/youth" target="_blank">Thực hiện: <strong>ĐTN-HSV, HCMUSSH<strong></a>'
+          )
         }
         t.attributionControl._esriAttributionLayerCount =
           t.attributionControl._esriAttributionLayerCount + 1;
@@ -1557,14 +1549,14 @@
             ImageryFirefly: {
               urlTemplate:
                 ut +
-                "//fly.maptiles.arcgis.com/arcgis/rest/services/World_Imagery_Firefly/MapServer/tile/{z}/{y}/{x}",
+                "",
               options: {
                 minZoom: 1,
                 maxZoom: 19,
                 attribution:
-                  "Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community",
+                  "E",
                 attributionUrl:
-                  "https://static.arcgis.com/attribution/World_Imagery",
+                  "",
               },
             },
           },

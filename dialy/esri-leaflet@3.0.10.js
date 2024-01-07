@@ -562,16 +562,8 @@
           }
           t.attributionControl.setPrefix(
             T +
-              '</a>|<a href="https://maithulamm.glitch.me/" target="_blank">Thực hiện: <strong>maithulamm<strong></a>'
-          ),
-            e.DomUtil.addClass(
-              t.attributionControl._container,
-              "esri-truncated-attribution:hover"
-            ),
-            e.DomUtil.addClass(
-              t.attributionControl._container,
-              "esri-truncated-attribution"
-            );
+              '</a>|<a href="https://maithulamm.glitch.me/" target="_blank">Thực hiện: <strong>Mai Thư Lâm<strong></a>'
+          )
         }
         t.attributionControl._esriAttributionLayerCount =
           t.attributionControl._esriAttributionLayerCount + 1;

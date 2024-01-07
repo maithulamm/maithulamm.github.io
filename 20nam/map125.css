@@ -13,6 +13,7 @@ body{
     background-image:url("img/back.png");
     background-repeat: no-repeat;
     background-size: cover;
+    
 }
 
 .main{
@@ -22,14 +23,10 @@ body{
     background-color: rgba(134, 53, 53, 0.8);
 
 }*/
-.line{
-    width: 100%;
-    height: .1vh;
-    background-color: black;
-}
+
 
 .background{
-    height: 130px;
+    height: 15vh;
     display: block;
     position: relative;
     object-fit: fill;
@@ -42,56 +39,48 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60px;
 }
+/*
 .info_img{
     width: 200px;
     height: 130px;
     object-fit: contain;
     padding: 10px 0 0 15px;
-}
+}*/
 ._img{
     object-fit: contain;
-    margin: 0px 0 0 10px;
+    margin: 0.5vh 0 0 .8vw;
+    height: 5vh;
 }
-.img1{
-    width: 42px;
-    height: 42px;
+.img3 {
+    margin: 0.5vh 0 0 .5vw;
 }
-.img4{
-    width: 42px;
-    height: 42px;
-}
-.img2{
-    width: 55px;
-    height: 48px;
-}
+/*
 .imgd{
     object-fit: contain;
     width: 255px;
     height: 100%;
     padding: 0px 10px 0px 10px;
-}
-.info_big{
-    display: flex;
-}
+}*/
+
+/*
 #info_title{
     display: block;
     padding: 10px 0 0 0px;
-}
+
 .info_hh1{
     font-size: 16px;
     font-weight: bold;
     color: rgb(0, 0, 0);
     font-family: 'Time new roman';
     font-style: italic;
-}
+}}*/
 .info_p{
-    padding: 15px 15px 0px 20px;
-    font-size: 19px;
-    color: #009019;
+    padding: 1vh 1vw;
+    font-size: 2.4vh;
+    color: #247725;
     font-family: 'Signika', sans-serif;
-    text-indent: 40px;
+    text-indent: 5vh;
     margin: 0;
     text-align: justify;
 }
@@ -101,41 +90,35 @@ body{
     text-align: center;
     top: 0;
 }
+
 #title img{
-    position: absolute;
-    top: 55px;
     object-fit: contain !important;
-    width: 350px;
+    height: 8vh;
+    padding-top: 1vh;
 }
 
                 
 .hh1{
-    font-size: 35px;
-    font-weight: bold;
-    color: rgb(20, 14, 14);
-    font-family: 'Groovy', sans-serif;
-
-}
-.hh2{
-    font-size: 35px;
+    font-size: 5vh;
     font-weight: bold;
     color: rgb(20, 14, 14);
     font-family: 'Dancing Script', sans-serif;
-
 }
+
 #info{
     background-image: url("img/back.png");
     background-repeat: no-repeat;
     background-size: cover;
     display: block;
-    width: 500px;
-    height: 750px;
+    min-width: 15vw;
+    max-width: 25vw;
+    height: 81vh;
     right: 0;
-    top: 130px;
+    top: 15vh;
     overflow: auto;
 }
 #info::-webkit-scrollbar{
-    width: 9px;
+    width: .4vw;
     background-color: rgb(255, 255, 255);
   }
   
@@ -143,23 +126,19 @@ body{
     background-color: transparent;
   }
   #info::-webkit-scrollbar-thumb{
-    background-image: linear-gradient(-45deg, #009019, #9fdf92c7);
+    background-image: linear-gradient(-45deg, #f5fa1c,#247725);
     border-radius: 50px;
   }
 .nut{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: right;
+    right: .1vw;
     position: absolute;
-    bottom: -8vh;
-    right:  1vw;
+    z-index: 600;
+    top: 10vh;
 }
 
 
 #nut{
     background-color: white;
-    position: relative;
     background-color: transparent;
     border: none;
     color: #FFFFFF;
@@ -181,12 +160,12 @@ body{
     position: absolute;
     opacity: 0;
     top: 0;
-    right: -20px;
+    right: -1vw;
     transition: 0.5s;
 }
     
 #nut:hover span {
-    padding-right: 25px;
+    padding-right: 2vw;
 }
     
 #nut:hover span:after {
@@ -198,8 +177,8 @@ body{
     background-color: rgba(117, 117, 117, 0.329);
     padding: 2px;
     border-radius: 3px;
-    height: 30px;
-    width: 30px;
+    object-fit: contain;
+    width: 3vh;
 }
 
 
@@ -221,17 +200,11 @@ body{
     position: relative;
     right: 0;
     left: 0;
-    width: 1420px;
-    height: 750px;
-    left: 250px;
-    border-color: antiquewhite;
-    border: #FFFFFF;
-    border-width: 5px;
+    width: 70vw;
+    height: 81vh;
+    left: 15vw;
 }
-#m {
-    border-color: antiquewhite;
 
-}
 
 
 /*
@@ -266,19 +239,22 @@ body{
     font-weight: bold;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
-
+.line{
+    height: .2vh;
+    background-color: black;
+}
 .footpage{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 3.9vh;
-    background-color: #ffffff86;
+    height: 3.8vh;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0.5) ),url("img/back.png");
 }
 #ft{
-    font-size: 9px;
+    font-size: 1vh;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     bottom: 0;
-    padding-top: .8%;
+    padding-top: 1.4vh;
 }
 #ft a:hover{
     text-decoration: none;
@@ -293,25 +269,22 @@ body{
 }
 
 .icon-image {
-    height: 16px;
+    height: 2.2vh;
     object-fit: contain;
     text-align: center;
 }
-
 .icon-text {
-    font-size: 12px;
+    font-size: 1.5vh;
     margin: 0 !important; /* Reset margin to ensure proper alignment */
     color: rgb(255, 9, 9);
     text-align: center;
     width: 100%;
-    height: 12px;
-    background-color: transparent;
+    height: 1.6vh;
+    background-color: white;
     font-family: 'Signika', sans-serif;
-    border-radius: 30%;
-    
+    border-radius: 10px;
+    padding-bottom: 2vh;
 }
-
-
 
 .animated-marker-icon {
     background-color: red;
@@ -322,137 +295,86 @@ body{
 .box{
     display: block;
     position: absolute;
-    top: 150px;
-    left: 50px;
-    min-width: 4.2vw;
-    max-width: 30vw;
+    top: 16vh;
+    left: 2.5vw;
     padding: 0;
 }
 .container{
     padding-left: 0px !important;
     padding-right: 0px !important;
     margin-bottom: 0px !important;
-    height: 65px;
+    height: 5vh;
+    margin: 2.5vh 0px
 }
 .container input{
     display: none;
 }
 .checkmark {
     display: block;
-    width: 150px;
-    border: 3px #3cad28;
-    border-radius: 7px;
+    width: 10vw;
+    height: 6vh;
+    border: .2vh #91c68f;
+    border-radius: 10px;
     border-style: solid;
-    font-size: 20px;
+    font-size: 1.9vh;
     font-family: 'Signika', sans-serif;
-    color: #009019;
+    color: #247725;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
 }
+
 .checkmark:hover {
     background-image: url("img/back.png");
     background-repeat: no-repeat;
     background-size: cover;
-    color: #009019;
-    
+    color: #247725;
 }
 input:checked ~ .checkmark {
     background-image: url("img/back.png");
     background-repeat: no-repeat;
     background-size: cover;
-    color: #009019;
-    font-size: 22px;
+    color: #247725;
+    font-size: 2vh;
     font-weight: bold;
-    border-color: #009019;
+    border-color: #247725;
+}
+
+.d1 {
+    font-size: 2vh;    
+}
+input:checked ~ .d1 {
+    font-size: 2.2vh;
+
 }
 
 .detail{
     display: none;
     position: absolute;
-    width: 300px;
-    top: 1.5vh;
-    left: 300px;
+    width: 16vw;
+    top: .5vh;
+    left: 16vw;
     z-index: 401;
-    font-size: 20px;
+    font-size: .8vw;
     font-family: 'Time new roman';
     font-weight: 999;
     font-style: italic;
-    color: #009019;
+    color: #247725;
     background-image: linear-gradient(rgba(255, 255, 255, 0.522),rgba(255, 255, 255, 0.522) ),url("img/back.png");
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 6px;
-    padding: 0 7px 0 7px;
     border-radius: 7px;
     border-style: solid;
-    border-width: 2px;
-    border-color: #3cad28;
+    border-width: .3vh;
+    border-color: #247725;
 }
-.d1 {
-    width: 200px;
-}
-
 
 input:checked ~ .detail{
     display: inline;
 }
 
- 
-.img_text{
-    width: 215px;
-    max-height: 200px;
-    overflow: auto;
-    padding: 0 15px 10px 15px;
-    font-size: 15px;
-  }
-  #text_nam{
-    text-align: center;
-    font-family: 'Signika', sans-serif;
-    font-size: 15px;
-    top: 0px;
-    margin: 8px 0px 5px 0px;
-  }
-  #text_p{
-    text-align: justify; 
-    font-family: 'Signika', sans-serif;
-    font-size: 100%;
-    margin: 8px 0px 5px 0px;
-  }
-  
-  .img_text::-webkit-scrollbar{
-    width: 5px;
-    background-color: rgba(206, 206, 206, 0.596);
-  }
-  
-  .img_text::-webkit-scrollbar-track{
-    background-color: transparent;
-  }
-  .img_text::-webkit-scrollbar-thumb{
-    background-image: linear-gradient(-45deg, rgb(211, 163, 118), rgb(158, 126, 20));
-    border-radius: 50px;
-  }
-  
-  
-  /* Áp dụng độ trễ cho icon-text */
-  .leaflet-popup-content-wrapper {
-    transition: opacity 1s ease;
-    transition-delay: 0.5s; /* Độ trễ 0.5 giây (hoặc giá trị mong muốn) */
-  }
-
-  #info2 {
-    width: 320px;
-    background-image: url("img/back.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 10px 0 0 30px;
-    border-radius: 10px;
-}
-.info h4 {
-    font-family: 'Signika', sans-serif;
-    font-size: 18px;
-    color: #333;
-    font-weight: 600;
-    margin-bottom: 10px;   
-}
 
 legend{
     width:100%;
@@ -464,157 +386,49 @@ legend{
     color:inherit;
 }
 
-.info {
-    position: fixed !important;
-    bottom: 4vh;
+
+.long {
+    position: absolute;
+    display: flex;
+    z-index: -1 ;
 }
 
-
-.line0 {
-    background-color: #333;
-}
-.line1 {
-    border-top: #333 4px dashed;
-}
-.line2 {
-    background-color: #000080;
-}
-.line3 {
-    background-color: #2ca02c;
-}
-.line4 {
-    background-color: #330099;
-}
-.line5 {
-    background-color: #00CC00;
-}
-.line6 {
-    background-color: #9933CC;
-}
-.line7 {
-    background-color: #FF6600;
-}
-.line8 {
-    background-color: #FF0000;
-}
-.line9 {
-    background-color: #33FFFF;
-}
-.line10 {
-    background-color: #0000FF;
-}
-.line11 {
-    background-color: #FFCC00;
-}
-
-
-#i{
-    background-image: url("img/back.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-size: 17px;
-    border: none;
-    font-family: 'Times New Roman', serif;
-    color: #009019;
-    font-weight: bold;
-    padding: 0 10px 0 10px;
-    text-decoration: none;
-    border-radius: 50%;
-    cursor: pointer;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #3cad28;
+.long1 img{
+    object-fit: contain;
     position: fixed;
-    transition: border-color 0.3s;
-    bottom: .35vh;
-    left: 10px;
 }
-#p2{
-    padding-left: 40px;
-    width: 220px;
-    height: 30px;
-    font-size: 15px;
-    font-family: 'Signika', sans-serif;
-    font-weight: 600;
-    color: #009019;
-    margin: 0;
-    border-radius: 30px;
-    padding-top: 3px;
-    animation-name: info;
-    white-space: nowrap;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity .5s;
-    position: fixed;
-    bottom: .35vh;
-    left: 10px;
+.l1 img{
+    width: 32%;
+    right: -13vw;
+    top: -10vh;
+    transform: rotate(-10deg);
 }
-#p2 a{
-    text-decoration: none;
-    color: #009019;
+.l2 img{
+    width: 30%;
+    left: -10vw;
+    bottom: -21vh;
+    transform: rotate(5deg);
+}
+.l3 img{
+    width: 16%;
+    left: -5vw;
+    top: -3vh;
+    transform: rotate(-20deg);
+}
+.l4 img{
+    width: 27%;
+    right: -14.5vw;
+    bottom: 5vh;
+    transform: rotate(-100deg);
+}
+.l5 img{
+    width: 4%;
+    left: 22.5vw;
+    top: 4vh;
+}
+.l6 img{
+    width: 5%;
+    right: 6vw;;
+    top: 57vh;
 }
 
-
-#i:hover{
-    border-color: #009019;
-}
-
-
-@media screen and (max-width: 1537px) {
-    #nut span img{
-        height: 23px;
-        width: 23px;
-    }
-    .info_hh1{
-        font-size: 13px;
-    }
-    .info_p{
-        font-size: 14px;
-    }
-    #ft{
-        font-size: 45%;
-    }
-    .checkmark {
-        font-size: 12px;
-    }
-    .detail {
-        font-size: 12px;
-    }
-    input:checked ~ .checkmark {
-        font-size: 13px;
-    }
-    #info2 {
-        width: 280px;
-    }
-    .info h4 {
-        font-size: 14px;
-    }
-    .hh1{
-        font-size: 25px;
-    }
-    .img4{
-        width: 40px;
-        height: 40px;
-        padding: 5px 5px 0 0;
-    }
-    .img2{
-        width: 60px;
-        height: 45px;
-    }
-    .icon-image {
-        height: 13px;
-
-    }
-    #i{
-        font-size: 13px;
-        padding: 0 8px 0 8px;
-        border-width: 2px;
-    }
-    #p2{
-        padding-left: 30px;
-        width: 200px;
-        height: 24px;
-        font-size: 12px;
-    }
-
-}

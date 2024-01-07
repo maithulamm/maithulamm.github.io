@@ -1,8 +1,5 @@
 
 //-------------------------------------------------------------------------------------------------------------------------
-setTimeout(function () {
-    location.reload();
-  }, 60000*5);
 
 //-------------------------------------------------------------------------------------------------------------------------
 
@@ -24,20 +21,21 @@ document.addEventListener('DOMContentLoaded',
             isInfoVisible2 = false;
             }, 5000);
 });
+
 document.getElementById("nut").addEventListener("click", 
     function toggleInfo() {
         if (isInfoVisible) {
             isInfoVisible = false;
             info.classList.remove("active");
             info.classList.add("inactive");
-            map.setView([15.640470684336918, 106.0246588180541], calculateZoom());
+            map.setView([16.014, 106.830], calculateZoom());
         } else {
             info.style.zIndex = "1001";
             info.style.display = "block";
             info.classList.remove("inactive");
             info.classList.add("active");
             isInfoVisible = true;
-            map.setView([15.640470684336918, 111.0246588180541], calculateZoom());
+            map.setView([16.014, 107.830], calculateZoom());
         }
     });
 
@@ -46,7 +44,7 @@ document.getElementById("nut").addEventListener("click",
 //-------------------------------------------------------------------------------------------------------------------------
 var map = new L.map('map', {
     tap: false,
-    center: [15.640470684336918, 111.0246588180541],
+    center: [16.014, 107.830],
     zoom: calculateZoom(), // Sử dụng hàm tính toán mức zoom
     minZoom: calculateZoom(), // Giới hạn zoom
     maxBounds: L.latLngBounds(L.latLng(-75, -190.55), L.latLng(75, 300)), // Giới hạn tọa độ
@@ -57,9 +55,9 @@ var map = new L.map('map', {
 function calculateZoom() {
     var screenWidth = window.innerWidth;
     if (screenWidth < 1000) {
-        return 2; 
+        return 4; 
     } else if (screenWidth < 1537) {
-        return 2;
+        return 5;
     } else {
         return 6;
     }
@@ -123,7 +121,7 @@ function updateIslandLabels() {
     var zoom = map.getZoom();
     markersLayer.clearLayers();
     islands.forEach(function(island) {
-        if (zoom >= 6) {
+        if (zoom >= 4) {
             var icon = L.divIcon({
                 className: 'custom-icon',
                 html: `<div >${island.name}</div>`,
@@ -139,14 +137,14 @@ map.on('zoomend', updateIslandLabels);
 updateIslandLabels();
     
 //---------------------------------------------------------------------------------------------------------------------------------
-               /* popup = L.popup()
+              /* popup = L.popup()
                 function onMapClick(e) {
                     popup
                         .setLatLng(e.latlng)   
-                        .setContent('<div class="text-center"> <strong> Tọa độ được chọn '+ '<br>' + '(vĩ độ, kinh độ) = '  +'('+ e.latlng.toString().slice(7,13)+', '+ e.latlng.toString().slice(18,25)+')' + '</strong> </div>')
+                        .setContent('<div class="text-center"> <strong> Tọa độ được chọn '+ '<br>' + '(vĩ độ, kinh độ) = '  +'('+ e.latlng.toString().slice(7,13)+', '+ e.latlng.toString().slice(17,25)+')' + '</strong> </div>')
                         .openOn(map);
                 }
-                //map.on('click', onMapClick); */
+                map.on('click', onMapClick); */
 //---------------------------------------------------------------------------------------------------------------------------------
     
 //---------------------------------------------------------------------------------------------------------------------------------
@@ -170,69 +168,18 @@ function createGeoJSONLayer(data) {
                     icon: L.divIcon({
                         className: 'my-div-icon',
                         html: `
-                        <div class="icon-text"><strong>${feature.properties.id}</strong></div>
-                            <img src="img/XTN.svg" class="icon-image"/>`,
-                        iconSize: [40, 35]
+                        <div class="icon-text"><strong>${feature.properties.nam}</strong></div>
+                        <img src="img/XTN.svg" class="icon-image"/>`,
+                        iconSize: [50, 50]
                     })
                 });
                 //
                 marker.on('click', function() {
-                    map.setView(latlng, 4);
-                });
-                return marker;
-            },
-            onEachFeature: function(feature, marker) {
-                var content_popup = `
-                <div class="img_text">
-                    <p id="text_nam"><strong>${feature.properties.chang} (${feature.properties.id.toString().slice(0,1)})</strong></p>
-                    <p id="text_nam"><strong>${feature.properties.place}</strong></p>
-                    <p id="text_p">&nbsp ${feature.properties.noi_dung}</p>
-                    ${feature.properties.trung1}
-                </div>
-                `;
-                var popupOpened = false;
-                marker.on('click', function() {
-                    if (!popupOpened) {
-                        setTimeout(function() {
-                            marker.bindPopup(content_popup).openPopup();
-                            popupOpened = true;
-                            marker.unbindPopup();
-                        }, 1000*0.2); // 1000 milliseconds = 1 second
-                    } else {
-                        setTimeout(function() {
-                        marker.unbindPopup().bindPopup(content_popup).openPopup();
-                        popupOpened = false;
-                        marker.unbindPopup();
-                    }, 1000*0.2);
-                    }
-                });
-            }
-        }),
-    ];
-}
-
-
-
-function createGeoJSONLayer1(data) {
-    return [
-        L.geoJSON(data, {
-            pointToLayer: function(feature, latlng) {
-                var marker = L.marker(latlng, {
-                    icon: L.divIcon({
-                        className: 'my-div-icon',
-                        html: 
-                        //<div class="icon-text"><strong>${feature.properties.id}</strong></div>
-                            `<img src="img/XTN.svg" class="icon-image"/>`,
-                        iconSize: [20, 20]
-                    })
-                });
-                marker.on('click', function() {
-                    var customLatLng = L.latLng(latlng.lat + .3, latlng.lng + 0.3);
-                    map.flyTo(customLatLng, 9);
+                    var customLatLng = L.latLng(latlng.lat + .03, latlng.lng + 0.03);
+                    map.flyTo(customLatLng, 12, {duration : .5});
                     isInfoVisible = false;
                     info.classList.remove("active");
                     info.classList.add("inactive");
-
                 });
                 return marker;
             },
@@ -241,23 +188,23 @@ function createGeoJSONLayer1(data) {
                 `    <div class="img_main">
                         <div class="slideshow-container">
                             <div class="mySlides" class="fade" id="s1">
-                            <img class="noidung_img" src='${feature.properties.img_url1}'>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url1}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url1}'></a>
                             </div>
                         
                             <div class="mySlides" class="fade" id="s2">
-                            <img class="noidung_img" src='${feature.properties.img_url2}' >
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url2}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url2}'></a>
                             </div>
                         
                             <div class="mySlides" class="fade" id="s3">
-                            <img class="noidung_img" src='${feature.properties.img_url3}'>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url3}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url3}'></a>
                             </div>
 
                             <div class="mySlides" class="fade" id="s4">
-                            <img class="noidung_img" src='${feature.properties.img_url4}'>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url4}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url4}'></a>
                             </div>
 
                             <div class="mySlides" class="fade" id="s5">
-                            <img class="noidung_img" src='${feature.properties.img_url5}'>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url5}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url5}'></a>
                             </div>
                             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                             <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -271,8 +218,96 @@ function createGeoJSONLayer1(data) {
                         </div>
                         <div>
                             <div class="img_text">
-                                <p id="text_nam"><strong>Khoa ${feature.properties.khoa}</strong></p>
-                                <p id="text_nam"><strong>NĂM ${feature.properties.nam}</strong></p>
+                                <p id="text_nam"><strong>${feature.properties.ct}</strong></p>
+                                <p id="text_nam"><strong>Năm ${feature.properties.nam}</strong></p>
+                                <p id="text_nam">${feature.properties.t_add}</p>
+                                <p id="text_p">${feature.properties.t_p.slice(1,-1)}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                var popupOpened = false;
+                marker.on('click', function() {
+                    if (!popupOpened) {
+                        setTimeout(function() {
+                            marker.bindPopup(content_popup).openPopup();
+                            popupOpened = true;
+                            marker.unbindPopup();
+                        }, 1000*0.5); // 1000 milliseconds = 1 second
+                    } else {
+                        setTimeout(function() {
+                        marker.unbindPopup().bindPopup(content_popup).openPopup();
+                        popupOpened = false;
+                        marker.unbindPopup();
+                    }, 1000*0.5);
+                    }
+                });
+            }
+        }),
+    ];
+}
+
+
+
+function createGeoJSONLayer1(data) {
+    return [
+        L.geoJSON(data, {
+            pointToLayer: function(latlng) {
+                var marker = L.marker(latlng, {
+                    icon: L.divIcon({
+                        className: 'my-div-icon',
+                        html: 
+                        //<div class="icon-text"><strong>${feature.properties.id}</strong></div>
+                            `<img src="img/XTN.svg" class="icon-image"/>`,
+                        iconSize: [30, 30]
+                    })
+                });
+                marker.on('click', function() {
+                    var customLatLng = L.latLng(latlng.lat + .03, latlng.lng + 0.03);
+                    map.flyTo(customLatLng, 11, {duration : .5});
+                    isInfoVisible = false;
+                    info.classList.remove("active");
+                    info.classList.add("inactive");
+                });
+                return marker;
+            },
+            onEachFeature: function(feature, marker) {
+                var content_popup = 
+                `    <div class="img_main">
+                        <div class="slideshow-container">
+                            <div class="mySlides" class="fade" id="s1">
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url1}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url1}'></a>
+                            </div>
+                        
+                            <div class="mySlides" class="fade" id="s2">
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url2}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url2}'></a>
+                            </div>
+                        
+                            <div class="mySlides" class="fade" id="s3">
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url3}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url3}'></a>
+                            </div>
+
+                            <div class="mySlides" class="fade" id="s4">
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url4}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url4}'></a>
+                            </div>
+
+                            <div class="mySlides" class="fade" id="s5">
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url5}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url5}'></a>
+                            </div>
+                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                            <div class="dott">
+                            <span class="dot" id="dot1" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                            <span class="dot" onclick="currentSlide(4)"></span>
+                            <span class="dot" onclick="currentSlide(5)"></span>
+                        </div>
+                        </div>
+                        <div>
+                            <div class="img_text">
+                            <p id="text_nam"><strong>${feature.properties.ct}</strong></p>
+                                <p id="text_nam"><strong>Năm ${feature.properties.nam}</strong></p>
                                 <p id="text_nam">${feature.properties.t_add}</p>
                                 <p id="text_p">${feature.properties.t_p.slice(1,-1)}</p>
                             </div>
@@ -307,13 +342,17 @@ var [data1] = createGeoJSONLayer(data1);
 var [data2] = createGeoJSONLayer(data2);
 var [data3] = createGeoJSONLayer(data3);
 var [data4] = createGeoJSONLayer(data4);
+var [data5] = createGeoJSONLayer(data5);
+var [data6] = createGeoJSONLayer(data6);
+var [data7] = createGeoJSONLayer(data7);
 
-L.layerGroup([data00]).addTo(map);
+//data0 = L.layerGroup([data1, data2]);
+data00.addTo(map);
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
 // Define the toggleLayer function
-function toggleLayer(dataLayer) {
+function toggleLayer(dataLayer,zoom) {
     map.closePopup();
     // Remove all layers from the map
     map.eachLayer(function (mapLayer) {
@@ -328,12 +367,24 @@ function toggleLayer(dataLayer) {
     info.classList.remove("active");
     info.classList.add("inactive");
 
-
+    function getCenterOfDataLayer(lineLayer) {
+        // Get the bounds of the 
+        var bounds = lineLayer.getBounds();
+        if (bounds.isValid()) {
+            // If the bounds are valid, return the center of the bounds
+            return bounds.getCenter();
+        } else {
+            // If the bounds are not valid, return null or handle the case accordingly
+            return null;
+        }
+    }
+    // Sử dụng hàm để lấy điểm trung tâm của 
+    var centerPoint = getCenterOfDataLayer(dataLayer);
     
     if (centerPoint !== null) {
         // Sử dụng điểm trung tâm, ví dụ:
         console.log("Center Point:", centerPoint);
-        map.setView(centerPoint, 3);
+        map.flyTo(centerPoint, zoom, {duration : zoom/15});
     } else {
         console.log("Invalid bounds");
     }
@@ -344,6 +395,7 @@ function toggleLayer(dataLayer) {
 }
 
 function toggleLayer1() {
+
     map.closePopup();
     // Remove all layers from the map
     map.eachLayer(function (mapLayer) {
@@ -364,31 +416,11 @@ function toggleLayer1() {
     isInfoVisible = false;
     info.classList.remove("active");
     info.classList.add("inactive");
-    map.setView([15.640470684336918, 106.0246588180541], calculateZoom());
+    map.flyTo([16.014, 106.830], calculateZoom(), {duration : .5});
     dao.addTo(map);
     legendControl.addTo(map);
     isInfoVisible2 = true;
-    
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-
-//---------------------------------------------------------------------------------------------------------------------------------
-
-var legendControl2 = L.control({ position: 'bottomleft' });
-legendControl2.onAdd = function () {
-    var div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML = `
-    <p id="p2"> <a href="https://maithulamm.glitch.me/" target="_blank">Thực hiện: MAI THƯ LÂM</a> 
-    </p>
-    <input id = "i" type="button" value = "i" onclick="open_info3()">
-    `;
-    return div;
-};
-//legendControl2.addTo(map);
-
-function open_info3() {
-    const paragraph = document.getElementById('p2');
-    paragraph.style.opacity = (parseFloat(paragraph.style.opacity) === 1) ? 0 : 1;
-}
