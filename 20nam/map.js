@@ -28,14 +28,14 @@ document.getElementById("nut").addEventListener("click",
             isInfoVisible = false;
             info.classList.remove("active");
             info.classList.add("inactive");
-            map.setView([16.014, 106.830], calculateZoom());
+            map.setView([11.014, 106.830], calculateZoom());
         } else {
             info.style.zIndex = "1001";
             info.style.display = "block";
             info.classList.remove("inactive");
             info.classList.add("active");
             isInfoVisible = true;
-            map.setView([16.014, 107.830], calculateZoom());
+            map.setView([11.014, 107.830], calculateZoom());
         }
     });
 
@@ -44,7 +44,7 @@ document.getElementById("nut").addEventListener("click",
 //-------------------------------------------------------------------------------------------------------------------------
 var map = new L.map('map', {
     tap: false,
-    center: [16.014, 107.830],
+    center: [11.014, 107.830],
     zoom: calculateZoom(), // Sử dụng hàm tính toán mức zoom
     minZoom: calculateZoom(), // Giới hạn zoom
     maxBounds: L.latLngBounds(L.latLng(-75, -190.55), L.latLng(75, 300)), // Giới hạn tọa độ
@@ -55,11 +55,11 @@ var map = new L.map('map', {
 function calculateZoom() {
     var screenWidth = window.innerWidth;
     if (screenWidth < 1000) {
-        return 4; 
+        return 6; 
     } else if (screenWidth < 1537) {
-        return 5;
+        return 7;
     } else {
-        return 6;
+        return 7;
     }
 }
 //-------------------------------------------------------------------------------------------------------------------------
@@ -148,16 +148,6 @@ updateIslandLabels();
 //---------------------------------------------------------------------------------------------------------------------------------
     
 //---------------------------------------------------------------------------------------------------------------------------------
-function content_popup() {
-    marker.bindPopup(`
-    <div class="img_text">
-        <p id="text_nam"><strong>${feature.properties.chang} (${feature.properties.id})</strong></p>
-        <p id="text_nam"><strong>${feature.properties.place}</strong></p>
-        <p id="text_p">&nbsp ${feature.properties.noi_dung}</p>
-        ${feature.properties.trung1}
-    </div>
-`).openPopup();
-}
 
 // Define the createGeoJSONLayer function
 function createGeoJSONLayer(data) {
@@ -170,7 +160,7 @@ function createGeoJSONLayer(data) {
                         html: `
                         <div class="icon-text"><strong>${feature.properties.nam}</strong></div>
                         <img src="img/XTN.svg" class="icon-image"/>`,
-                        iconSize: [50, 50]
+                        iconSize: [40, 50]
                     })
                 });
                 //
@@ -188,23 +178,23 @@ function createGeoJSONLayer(data) {
                 `    <div class="img_main">
                         <div class="slideshow-container">
                             <div class="mySlides" class="fade" id="s1">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url1}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url1}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url1}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
                             </div>
                         
                             <div class="mySlides" class="fade" id="s2">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url2}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url2}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url2}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
                             </div>
                         
                             <div class="mySlides" class="fade" id="s3">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url3}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url3}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url3}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
                             </div>
 
                             <div class="mySlides" class="fade" id="s4">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url4}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url4}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url4}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
                             </div>
 
                             <div class="mySlides" class="fade" id="s5">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url5}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url5}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url5}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
                             </div>
                             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                             <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -218,10 +208,10 @@ function createGeoJSONLayer(data) {
                         </div>
                         <div>
                             <div class="img_text">
-                                <p id="text_nam"><strong>${feature.properties.ct}</strong></p>
+                            <p id="text_nam"><strong>${feature.properties.donvi}</strong></p>
                                 <p id="text_nam"><strong>Năm ${feature.properties.nam}</strong></p>
-                                <p id="text_nam">${feature.properties.t_add}</p>
-                                <p id="text_p">${feature.properties.t_p.slice(1,-1)}</p>
+                                <p id="text_nam">${feature.properties.name}</p>
+                                <p id="text_p">${feature.properties.mota}</p>
                             </div>
                         </div>
                     </div>
@@ -252,19 +242,20 @@ function createGeoJSONLayer(data) {
 function createGeoJSONLayer1(data) {
     return [
         L.geoJSON(data, {
-            pointToLayer: function(latlng) {
+            pointToLayer: function(feature, latlng) {
                 var marker = L.marker(latlng, {
                     icon: L.divIcon({
                         className: 'my-div-icon',
-                        html: 
-                        //<div class="icon-text"><strong>${feature.properties.id}</strong></div>
-                            `<img src="img/XTN.svg" class="icon-image"/>`,
+                        html: `
+                    
+                        <img src="img/XTN.svg" class="icon-image"/>`,
                         iconSize: [30, 30]
                     })
                 });
+                //
                 marker.on('click', function() {
                     var customLatLng = L.latLng(latlng.lat + .03, latlng.lng + 0.03);
-                    map.flyTo(customLatLng, 11, {duration : .5});
+                    map.flyTo(customLatLng, 12, {duration : .5});
                     isInfoVisible = false;
                     info.classList.remove("active");
                     info.classList.add("inactive");
@@ -276,23 +267,23 @@ function createGeoJSONLayer1(data) {
                 `    <div class="img_main">
                         <div class="slideshow-container">
                             <div class="mySlides" class="fade" id="s1">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url1}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url1}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url1}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
                             </div>
                         
                             <div class="mySlides" class="fade" id="s2">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url2}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url2}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url2}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
                             </div>
                         
                             <div class="mySlides" class="fade" id="s3">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url3}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url3}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url3}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
                             </div>
 
                             <div class="mySlides" class="fade" id="s4">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url4}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url4}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url4}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
                             </div>
 
                             <div class="mySlides" class="fade" id="s5">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url5}" target="_blank"><img class="noidung_img" src='${feature.properties.img_url5}'></a>
+                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url5}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
                             </div>
                             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                             <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -306,10 +297,10 @@ function createGeoJSONLayer1(data) {
                         </div>
                         <div>
                             <div class="img_text">
-                            <p id="text_nam"><strong>${feature.properties.ct}</strong></p>
+                            <p id="text_nam"><strong>${feature.properties.donvi}</strong></p>
                                 <p id="text_nam"><strong>Năm ${feature.properties.nam}</strong></p>
-                                <p id="text_nam">${feature.properties.t_add}</p>
-                                <p id="text_p">${feature.properties.t_p.slice(1,-1)}</p>
+                                <p id="text_nam">${feature.properties.name}</p>
+                                <p id="text_p">${feature.properties.mota}</p>
                             </div>
                         </div>
                     </div>
@@ -331,9 +322,7 @@ function createGeoJSONLayer1(data) {
                     }
                 });
             }
-            
         }),
-
     ];
 }
 // Create GeoJSON layers
@@ -342,9 +331,7 @@ var [data1] = createGeoJSONLayer(data1);
 var [data2] = createGeoJSONLayer(data2);
 var [data3] = createGeoJSONLayer(data3);
 var [data4] = createGeoJSONLayer(data4);
-var [data5] = createGeoJSONLayer(data5);
-var [data6] = createGeoJSONLayer(data6);
-var [data7] = createGeoJSONLayer(data7);
+
 
 //data0 = L.layerGroup([data1, data2]);
 data00.addTo(map);
@@ -416,7 +403,7 @@ function toggleLayer1() {
     isInfoVisible = false;
     info.classList.remove("active");
     info.classList.add("inactive");
-    map.flyTo([16.014, 106.830], calculateZoom(), {duration : .5});
+    map.flyTo([11.014, 106.830], calculateZoom(), {duration : .5});
     dao.addTo(map);
     legendControl.addTo(map);
     isInfoVisible2 = true;

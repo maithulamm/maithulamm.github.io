@@ -562,7 +562,7 @@
           }
           t.attributionControl.setPrefix(
             T +
-              '</a>|<a href="https://maithulamm.glitch.me/" target="_blank">Thực hiện: <strong>Mai Thư Lâm<strong></a>'
+              '<strong>|</strong><a href="https://maithulamm.glitch.me/" target="_blank">Thực hiện: <strong>Mai Thư Lâm</strong></a>'
           )
         }
         t.attributionControl._esriAttributionLayerCount =
