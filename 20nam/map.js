@@ -28,14 +28,14 @@ document.getElementById("nut").addEventListener("click",
             isInfoVisible = false;
             info.classList.remove("active");
             info.classList.add("inactive");
-            map.setView([11.014, 106.830], calculateZoom());
+            //map.setView([11.014, 106.830], calculateZoom());
         } else {
             info.style.zIndex = "1001";
             info.style.display = "block";
             info.classList.remove("inactive");
             info.classList.add("active");
             isInfoVisible = true;
-            map.setView([11.014, 107.830], calculateZoom());
+            //map.setView([11.014, 107.830], calculateZoom());
         }
     });
 
@@ -63,12 +63,12 @@ function calculateZoom() {
     }
 }
 //-------------------------------------------------------------------------------------------------------------------------
-
+/*
 // Cập nhật lại mức zoom khi kích thước màn hình thay đổi
 window.addEventListener('resize', 
     function() {
         location.reload();
-    });
+    });*/
 
 
 //-------------------------------------------------------------------------------------------------------------------------
@@ -165,8 +165,8 @@ function createGeoJSONLayer(data) {
                 });
                 //
                 marker.on('click', function() {
-                    var customLatLng = L.latLng(latlng.lat + .03, latlng.lng + 0.03);
-                    map.flyTo(customLatLng, 12, {duration : .5});
+                    var customLatLng = L.latLng(latlng.lat + .03, latlng.lng + 0.0);
+                    map.flyTo(customLatLng, 13, {duration : .8});
                     isInfoVisible = false;
                     info.classList.remove("active");
                     info.classList.add("inactive");
@@ -255,8 +255,8 @@ function createGeoJSONLayer1(data) {
                 });
                 //
                 marker.on('click', function() {
-                    var customLatLng = L.latLng(latlng.lat + .03, latlng.lng + 0.03);
-                    map.flyTo(customLatLng, 12, {duration : .5});
+                    var customLatLng = L.latLng(latlng.lat + .03, latlng.lng);
+                    map.flyTo(customLatLng, 13, {duration : .8});
                     isInfoVisible = false;
                     info.classList.remove("active");
                     info.classList.add("inactive");
@@ -373,7 +373,7 @@ function toggleLayer(dataLayer,zoom) {
     if (centerPoint !== null) {
         // Sử dụng điểm trung tâm, ví dụ:
         console.log("Center Point:", centerPoint);
-        map.flyTo(centerPoint, zoom, {duration : zoom/15});
+        map.flyTo(centerPoint, zoom, {duration : zoom/14});
     } else {
         console.log("Invalid bounds");
     }
@@ -405,7 +405,7 @@ function toggleLayer1() {
     isInfoVisible = false;
     info.classList.remove("active");
     info.classList.add("inactive");
-    map.flyTo([11.014, 106.830], calculateZoom(), {duration : .5});
+    map.flyTo([11.014, 106.830], calculateZoom(), {duration : .8});
     dao.addTo(map);
     legendControl.addTo(map);
     isInfoVisible2 = true;
