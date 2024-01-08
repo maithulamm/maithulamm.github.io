@@ -210,7 +210,8 @@ function createGeoJSONLayer(data) {
                             <div class="img_text">
                             <p id="text_nam"><strong>${feature.properties.donvi}</strong></p>
                                 <p id="text_nam"><strong>Năm ${feature.properties.nam}</strong></p>
-                                <p id="text_nam">${feature.properties.name}</p>
+                                <p id="text_nam">${feature.properties.name_detail}</p>
+                                <p id="text_nam1">${feature.properties.name}</p>
                                 <p id="text_p">${feature.properties.mota}</p>
                             </div>
                         </div>
@@ -299,7 +300,8 @@ function createGeoJSONLayer1(data) {
                             <div class="img_text">
                             <p id="text_nam"><strong>${feature.properties.donvi}</strong></p>
                                 <p id="text_nam"><strong>Năm ${feature.properties.nam}</strong></p>
-                                <p id="text_nam">${feature.properties.name}</p>
+                                <p id="text_nam">${feature.properties.name_detail}</p>
+                                <p id="text_nam1">${feature.properties.name}</p>
                                 <p id="text_p">${feature.properties.mota}</p>
                             </div>
                         </div>
