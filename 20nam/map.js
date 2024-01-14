@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded',
         info.classList.remove("inactive");
         info.classList.add("active");
         isInfoVisible = true;
-        //
+        /*            if (window.innerWidth <= 1000) {
+            info.style.display = "none";
+            } */
         legendControl.addTo(map);
         isInfoVisible2 = true;
         setTimeout(function () {
