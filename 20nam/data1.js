@@ -1,32 +1,6 @@
 var data00 = {
   "type": "FeatureCollection",
   "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "type": 4,
-        "nam": 2005,
-        "name1": "Thành phố Hồ Chí Minh",
-        "name2": "TP.HCM",
-        "name3": "Quận Bình Thạnh",
-        "name4": " ",
-        "name": "Quận Bình Thạnh, Thành phố Hồ Chí Minh",
-        "name_detail": "Trung tâm Dưỡng lão Thị Nghè",
-        "x": 10.79699454337,
-        "y": 106.709541986261,
-        "start": "02/05/2005",
-        "end": "02/12/2005",
-        "donvi": "Cấp trường",
-        "mota": "Chương trình \"Vui Tết Ất Dậu\" cho sinh viên xa nhà và những người có hoàn cảnh khó khăn, neo đơn, trẻ em lang thang, cơ nhỡ tại Trung tâm Dưỡng lão Thị Nghè, Trung tâm Bảo trợ tàn tật mồ côi Thị Nghè và Trung tâm Thanh thiếu niên huyện Củ Chi. Trước đó sinh viên trường đã thu gom lịch block để làm sách cho người khiếm thị, tham gia gói bánh chưng - bánh tét cho trẻ em nghèo tại Công viên 30.4."
-      },
-      "geometry": {
-        "coordinates": [
-          106.709541986261,
-          10.79699454337
-        ],
-        "type": "Point"
-      }
-    },
       {
        "type": "Feature",
        "properties": {

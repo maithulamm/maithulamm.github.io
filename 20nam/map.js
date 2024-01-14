@@ -180,7 +180,7 @@ function createGeoJSONLayer(data) {
                 `    <div class="img_main">
                         <div class="slideshow-container">
                             <div class="mySlides" class="fade" id="s1">
-                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i1}" target="_blank"><img class="noidung_img" src="image/177_1.jpg"></a>
+                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i1}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i1}></a>
                             </div>
                             <div class="mySlides" class="fade" id="s2">
                             <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i2}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i2}"></a>
