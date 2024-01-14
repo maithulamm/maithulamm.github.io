@@ -541,28 +541,6 @@ legend{
     #info2 h4 {
         font-size: 150%;
     }
-    .chugiai_li p {
-        font-size: 70%;
-        color: #333;
-        font-weight: 600;
-        align-items: center;
-    }
-    .chugiai_ul .chugiai_li{
-        display: flex;
-        height: 3vh;
-    }
-    .chugiai_ul {
-        padding: 0;
-        
-    }
-    .chugiai_line {
-        width: 5vw;
-        height: .3vh;
-        margin: .8vh 1vw 0 0;
-    }
-    .line1 {
-        border-top: #333 .3vh dashed;
-    }
     .info_img{
         width: 30vw;
         padding: 0 1vw;
@@ -603,7 +581,6 @@ legend{
 .icon-text {
     font-size: 1.3vh;
     margin: 0 !important; /* Reset margin to ensure proper alignment */
-    color: rgb(255, 9, 9);
     text-align: center;
     width: 100%;
     height: 1vh;
@@ -616,7 +593,6 @@ legend{
 
 #info::-webkit-scrollbar{
     width: 1vw;
-    background-color: rgb(255, 255, 255);
   }
   .footpage{
     display: block;

@@ -44,7 +44,7 @@ document.getElementById("nut").addEventListener("click",
 //-------------------------------------------------------------------------------------------------------------------------
 var map = new L.map('map', {
     tap: false,
-    center: [11.014, 107.830],
+    center: [11.014, 106.830],
     zoom: calculateZoom(), // Sử dụng hàm tính toán mức zoom
     minZoom: calculateZoom(), // Giới hạn zoom
     maxBounds: L.latLngBounds(L.latLng(-75, -190.55), L.latLng(75, 300)), // Giới hạn tọa độ
@@ -55,7 +55,7 @@ var map = new L.map('map', {
 function calculateZoom() {
     var screenWidth = window.innerWidth;
     if (screenWidth < 1000) {
-        return 6; 
+        return 7; 
     } else if (screenWidth < 1537) {
         return 7;
     } else {
@@ -160,7 +160,7 @@ function createGeoJSONLayer(data) {
                         html: `
                         <div class="icon-text"><strong>${feature.properties.nam}</strong></div>
                         <img src="img/XTN.svg" class="icon-image"/>`,
-                        iconSize: [40, 50]
+                        iconSize: [30, 50],
                     })
                 });
                 //
@@ -338,6 +338,9 @@ data00.addTo(map);
 
 // Define the toggleLayer function
 function toggleLayer(dataLayer,zoom) {
+    if (innerWidth < 1000) {
+        zoom = 7;
+    }
     map.closePopup();
     // Remove all layers from the map
     map.eachLayer(function (mapLayer) {

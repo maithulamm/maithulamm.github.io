@@ -145,3 +145,30 @@
   transition-delay: 0.5s; /* Độ trễ 0.5 giây (hoặc giá trị mong muốn) */
 }
 
+@media screen and (max-width: 1000px) {
+  
+.img_main{
+  width: 32vw;
+}
+
+.noidung_img{
+  width: 32vw;
+  height: 10vh;
+  object-fit: contain;
+
+}
+.mySlides {
+  width: 32vw;
+}
+.img_text{
+  width: 32vw;
+}
+
+.prev, .next {
+  background-color: #f5fa1c;
+  padding: .3vh 1.5vw;
+}
+.img_text::-webkit-scrollbar{
+  width: .6vw;
+}
+}

@@ -110,8 +110,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     display: block;
-    min-width: 15vw;
-    max-width: 25vw;
+    width: 25vw;
     height: 81vh;
     right: 0;
     top: 15vh;
@@ -337,17 +336,12 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     color: #247725;
-    font-size: 2vh;
     font-weight: bold;
     border-color: #247725;
 }
 
 .d1 {
     font-size: 2vh;    
-}
-.container input:checked ~ .d1 {
-    font-size: 2.2vh;
-
 }
 
 .detail{
@@ -432,3 +426,96 @@ legend{
     top: 57vh;
 }
 
+@media screen and (max-width: 1000px) {
+    .hh1{
+        font-size: 90%;
+    }
+
+    #info{
+        width: 80vw ;
+        height: 82vh;
+    }
+    .info_hh1{
+        font-size: 80%;
+        padding: .5vh 0;
+    }
+    #map {
+        position: relative;
+        right: 0;
+        left: 0;
+        width: 80vw;
+        height: 82vh;
+        left: 20vw;
+    }
+    .box{
+        display: block;
+        position: absolute;
+        top: 16vh;
+        left: 2.9vw;
+        padding: 0;
+    }
+    .checkmark {
+        width: 15vw;
+        height: 3.8vh;
+        font-size: 1vh;
+        padding-top: .4vh;
+    }
+    .d1 {
+        font-size: 1.3vh;    
+    }
+    .detail{
+        top: 1vh;
+        left: 30vw;
+        font-size: 1.5vh;
+        width: 55vw;
+    }
+    #info2 {
+        width: 40vw;
+    }
+    #info2 h4 {
+        font-size: 150%;
+    }
+    .info_img{
+        width: 30vw;
+        padding: 0 1vw;
+    }
+    #p3{
+        font-size: 1vw;
+    }
+
+    
+
+.info_p{
+    padding: 1vh 5vw;
+    font-size: 2vh;
+}
+
+#info::-webkit-scrollbar{
+    width: 1vw;
+  }
+  .footpage{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: 3vh;
+    bottom: 0;
+    padding-top: .1vh;
+}
+#ft{
+    font-size: 40%;
+    margin: 0;
+    padding-top: .1vh;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+}
+.leaflet-control-scale-line {
+    width: 20vw !important;
+    }
+.icon-text {
+    font-size: 1vh;
+    height: 1vh;
+    padding-bottom: 1.5vh;
+}
+}
