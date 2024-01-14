@@ -460,7 +460,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 			 box-sizing: border-box;
 		background: rgba(255, 255, 255, 0.8);
 		text-shadow: 1px 1px #fff;
-		width: 3vw !important;
+		width: 5vw !important;
 		}
 		.leaflet-control-scale-line:not(:first-child) {
 			border-top: .2vh solid #777;
@@ -491,7 +491,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	margin-bottom: 3vh;
 	}
 .leaflet-popup-content-wrapper {
-	padding: .3vh 1vh 1vh 1vh;
+	padding: .3vh .5vw .5vh .5vw;
 	text-align: left;
 	border-radius: 10px;
 

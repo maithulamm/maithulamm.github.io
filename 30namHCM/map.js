@@ -4,7 +4,7 @@
 
 var info = document.getElementById("info");
 
-var isInfoVisible = false;
+
 document.addEventListener('DOMContentLoaded', 
     function() {
         info.style.zIndex = "1001";
@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded',
         info.classList.remove("inactive");
         info.classList.add("active");
         isInfoVisible = true;
+        
         //
         legendControl.addTo(map);
         isInfoVisible2 = true;
@@ -20,21 +21,24 @@ document.addEventListener('DOMContentLoaded',
             isInfoVisible2 = false;
             }, 5000);
 });
+var isInfoVisible = false;
 document.getElementById("nut").addEventListener("click", 
     function toggleInfo() {
         if (isInfoVisible) {
-            isInfoVisible = false;
             info.classList.remove("active");
             info.classList.add("inactive");
-            map.setView([20.552, 23.21484], calculateZoom());
+            isInfoVisible = false;
+            if (window.innerWidth <= 1000) {
+            info.style.display = "none";
+            }
         } else {
-            info.style.zIndex = "1001";
-            info.style.display = "block";
             info.classList.remove("inactive");
             info.classList.add("active");
+            info.style.display.remove = "none";
+            info.style.zIndex = "1001";
+            info.style.display = "block";
             isInfoVisible = true;
-            map.setView([20.552, 55.21484], calculateZoom());
-        }
+        };
     });
 
 document.getElementById("nut2").addEventListener("click", 
@@ -55,7 +59,7 @@ var map = new L.map('map', {
     center: [20.552, 55.21484],
     zoom: calculateZoom(), // Sử dụng hàm tính toán mức zoom
     minZoom: calculateZoom(), // Giới hạn zoom
-    maxBounds: L.latLngBounds(L.latLng(-75, -190.55), L.latLng(75, 300)), // Giới hạn tọa độ
+    maxBounds: L.latLngBounds(L.latLng(-85, -300), L.latLng(85, 300)), // Giới hạn tọa độ
     
 });
 //wrapLatLng(20.552, 70.21484);
@@ -63,7 +67,7 @@ var map = new L.map('map', {
 function calculateZoom() {
     var screenWidth = window.innerWidth;
     if (screenWidth < 1000) {
-        return 1; 
+        return 2; 
     } else if (screenWidth < 1537) {
         return 2;
     } else {
@@ -72,52 +76,13 @@ function calculateZoom() {
 }
 //-------------------------------------------------------------------------------------------------------------------------
 
-/*
-// Cập nhật lại mức zoom khi kích thước màn hình thay đổi
-window.addEventListener('resize', 
-    function() {
-        location.reload();
-    });*/
 
-
-//-------------------------------------------------------------------------------------------------------------------------
-
-//Esri Leaflet
-const apiKey = "AAPKc84180eb554748db8f9c5610ea258426GjMeZS-ZZoTcACKRfs7uvF3tG2wQHkLPDjqlq2KXIYiqwdOADtwgFlq4g72h0mBn";
-
-function getV2Basemap(style) {
-    return L.esri.Vector.vectorBasemapLayer(style, {
+const getV2Basemap = L.esri.Vector.vectorBasemapLayer("arcgis/charted-territory", {
     language: "vi", //Chọn ngôn ngữ
-    apikey: apiKey,
+    apikey:  "AAPKc84180eb554748db8f9c5610ea258426GjMeZS-ZZoTcACKRfs7uvF3tG2wQHkLPDjqlq2KXIYiqwdOADtwgFlq4g72h0mBn",
     version:2
-    })
-}
-    
+    }).addTo(map);      
 
-                
-//Bộ chọn bản đồ nền Esri
-
-const basemapLayers = {
-
-    "arcgis/outdoor": getV2Basemap("arcgis/outdoor"),
-    "arcgis/community": getV2Basemap("arcgis/community"),
-    "arcgis/navigation": getV2Basemap("arcgis/navigation"),
-    "arcgis/streets": getV2Basemap("arcgis/streets"),
-    "arcgis/streets-relief": getV2Basemap("arcgis/streets-relief"),
-    "arcgis/imagery": getV2Basemap("arcgis/imagery"),
-    "arcgis/oceans": getV2Basemap("arcgis/oceans"),
-    "arcgis/topographic": getV2Basemap("arcgis/topographic"),
-    "arcgis/light-gray": getV2Basemap("arcgis/light-gray"),
-    "arcgis/dark-gray": getV2Basemap("arcgis/dark-gray"),
-    "arcgis/human-geography": getV2Basemap("arcgis/human-geography"),
-    "arcgis/charted-territory": getV2Basemap("arcgis/charted-territory").addTo(map),
-    "arcgis/nova": getV2Basemap("arcgis/nova"),
-    "osm/standard": getV2Basemap("osm/standard"),
-    "osm/navigation": getV2Basemap("osm/navigation"),
-    "osm/streets": getV2Basemap("osm/streets"),
-    "osm/blueprint": getV2Basemap("osm/blueprint")
-    
-};
                 
 //L.control.layers(basemapLayers).addTo(map);
 // Tạo Scale Control và thêm vào bản đồ
@@ -202,7 +167,7 @@ function createGeoJSONLayer(data, line) {
                 });
                 //
                 marker.on('click', function() {
-                    map.flyTo(latlng, 4, {duration: 1});
+                    map.flyTo(latlng, 5, {duration: 1});
                 });
                 return marker;
             },
@@ -238,14 +203,14 @@ function createGeoJSONLayer(data, line) {
             onEachFeature: function (feature, layer) {
                 var screenWidth = window.innerWidth;
                 if (screenWidth < 1537) {
-                    layer.setText(`         ►         `+"", {offset: 3,attributes: {fill: `${feature.properties.color}`,'font-size':"10px"}, orientation: '', center: false,repeat: true});
+                    layer.setText(`         ►         `+"", {offset: 3,attributes: {fill: `${feature.properties.color}`,'font-size':"100%"}, orientation: '', center: false,repeat: true});
                     layer.setStyle({
                         'color': feature.properties.color,
                         'dashArray': feature.properties.dashArray,
                         'weight': 2,
                     });
                 } else {
-                    layer.setText(`          ►           `+"", {offset: 5,attributes: {fill: `${feature.properties.color}`,'font-size':"15px"}, orientation: '', center: false,repeat: true});
+                    layer.setText(`          ►           `+"", {offset: 5,attributes: {fill: `${feature.properties.color}`,'font-size':"100%"}, orientation: '', center: false,repeat: true});
                     layer.setStyle({
                         'color': feature.properties.color,
                         'dashArray': feature.properties.dashArray,
@@ -332,6 +297,16 @@ var line00 = L.layerGroup([line1, line2, line3, line4, line5, line6, line7, line
 
 // Define the toggleLayer function
 function toggleLayer(dataLayer, lineLayer, zoom) {
+    var zoom2 = 0;
+    var a = 0;
+    var screenWidth = window.innerWidth;
+    if (screenWidth < 1000) {
+        zoom2 = zoom - 1;
+        a = zoom2*2;
+    } else {
+        zoom2 = zoom;
+        a = 5;
+    }
     map.closePopup();
     
     // Remove all layers from the map
@@ -345,7 +320,7 @@ function toggleLayer(dataLayer, lineLayer, zoom) {
             // Add the selected layers to the map
             dataLayer.addTo(map);
             lineLayer.addTo(map);
-      }, (zoom/5)*1000);
+      }, (zoom2/a)*1000);
 
 
     isInfoVisible = false;
@@ -368,7 +343,7 @@ function toggleLayer(dataLayer, lineLayer, zoom) {
     if (centerPoint !== null) {
         // Sử dụng điểm trung tâm, ví dụ:
         console.log("Center Point:", centerPoint);
-        map.flyTo(centerPoint, zoom , {duration : zoom/5});
+        map.flyTo(centerPoint, zoom2 , {duration : zoom2/a});
     } else {
         console.log("Invalid bounds");
     }

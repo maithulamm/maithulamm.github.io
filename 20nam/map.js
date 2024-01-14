@@ -178,23 +178,19 @@ function createGeoJSONLayer(data) {
                 `    <div class="img_main">
                         <div class="slideshow-container">
                             <div class="mySlides" class="fade" id="s1">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url1}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
+                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i1}" target="_blank"><img class="noidung_img" src="image/177_1.jpg"></a>
                             </div>
-                        
                             <div class="mySlides" class="fade" id="s2">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url2}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
+                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i2}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i2}"></a>
                             </div>
-                        
                             <div class="mySlides" class="fade" id="s3">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url3}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
+                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i3}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i3}"></a>
                             </div>
-
                             <div class="mySlides" class="fade" id="s4">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url4}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
+                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i4}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i4}"></a>
                             </div>
-
                             <div class="mySlides" class="fade" id="s5">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url5}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
+                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i5}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i5}"></a>
                             </div>
                             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                             <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -208,7 +204,7 @@ function createGeoJSONLayer(data) {
                         </div>
                         <div>
                             <div class="img_text">
-                            <p id="text_nam"><strong>${feature.properties.donvi}</strong></p>
+                                <p id="text_nam"><strong>${feature.properties.donvi}</strong></p>
                                 <p id="text_nam"><strong>Năm ${feature.properties.nam}</strong></p>
                                 <p id="text_nam">${feature.properties.name_detail}</p>
                                 <p id="text_nam1">${feature.properties.name}</p>
@@ -220,12 +216,14 @@ function createGeoJSONLayer(data) {
                 var popupOpened = false;
                 marker.on('click', function() {
                     if (!popupOpened) {
+                        slideIndex = 1;
                         setTimeout(function() {
                             marker.bindPopup(content_popup).openPopup();
                             popupOpened = true;
                             marker.unbindPopup();
                         }, 1000*0.5); // 1000 milliseconds = 1 second
                     } else {
+                        slideIndex = 1;
                         setTimeout(function() {
                         marker.unbindPopup().bindPopup(content_popup).openPopup();
                         popupOpened = false;
@@ -268,23 +266,19 @@ function createGeoJSONLayer1(data) {
                 `    <div class="img_main">
                         <div class="slideshow-container">
                             <div class="mySlides" class="fade" id="s1">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url1}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
+                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i1}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i1}"></a>
                             </div>
-                        
                             <div class="mySlides" class="fade" id="s2">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url2}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
+                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i2}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i2}"></a>
                             </div>
-                        
                             <div class="mySlides" class="fade" id="s3">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url3}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
+                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i3}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i3}"></a>
                             </div>
-
                             <div class="mySlides" class="fade" id="s4">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url4}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
+                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i4}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i4}"></a>
                             </div>
-
                             <div class="mySlides" class="fade" id="s5">
-                            <a href="https://maithulamm.github.io/dialy/${feature.properties.img_url5}" target="_blank"><img class="noidung_img" src='img/load.gif'></a>
+                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i5}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i5}"></a>
                             </div>
                             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                             <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -310,12 +304,14 @@ function createGeoJSONLayer1(data) {
                 var popupOpened = false;
                 marker.on('click', function() {
                     if (!popupOpened) {
+                        slideIndex = 1;
                         setTimeout(function() {
                             marker.bindPopup(content_popup).openPopup();
                             popupOpened = true;
                             marker.unbindPopup();
                         }, 1000*0.5); // 1000 milliseconds = 1 second
                     } else {
+                        slideIndex = 1;
                         setTimeout(function() {
                         marker.unbindPopup().bindPopup(content_popup).openPopup();
                         popupOpened = false;

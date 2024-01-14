@@ -15,6 +15,11 @@
   object-fit: contain;
 
 }
+  
+.noidung_img:hover {
+  opacity: 0.3;
+  z-index: 0;
+}
 
 .slideshow-container {
   position: relative; 
@@ -22,7 +27,12 @@
 }
 
 .mySlides {
-  background-color: transparent;
+  background-image: url("img/zoom.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  background-size: 2vw;
   width: 11.5vw;
 }
 
@@ -112,6 +122,7 @@
   font-family: 'Signika', sans-serif;
   font-size: 100%;
   margin: .5vh .1vw .3vh .2vw;
+  text-indent: 1vw;
 }
 
 .img_text::-webkit-scrollbar{
