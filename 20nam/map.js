@@ -156,84 +156,92 @@ function createGeoJSONLayer(data) {
     return [
         L.geoJSON(data, {
             pointToLayer: function(feature, latlng) {
-                var marker = L.marker(latlng, {
-                    icon: L.divIcon({
-                        className: 'my-div-icon',
-                        html: `
-                        <div class="icon-text"><strong>${feature.properties.nam}</strong></div>
-                        <img src="img/XTN.svg" class="icon-image"/>`,
-                        iconSize: [30, 50],
-                    })
-                });
-                //
-                marker.on('click', function() {
-                    var customLatLng = L.latLng(latlng.lat + .03, latlng.lng + 0.0);
-                    map.flyTo(customLatLng, 13, {duration : .8});
-                    isInfoVisible = false;
-                    info.classList.remove("active");
-                    info.classList.add("inactive");
-                });
-                return marker;
-            },
-            onEachFeature: function(feature, marker) {
-                var content_popup = 
-                `    <div class="img_main">
-                        <div class="slideshow-container">
-                            <div class="mySlides" class="fade" id="s1">
-                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i1}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i1}></a>
-                            </div>
-                            <div class="mySlides" class="fade" id="s2">
-                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i2}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i2}"></a>
-                            </div>
-                            <div class="mySlides" class="fade" id="s3">
-                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i3}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i3}"></a>
-                            </div>
-                            <div class="mySlides" class="fade" id="s4">
-                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i4}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i4}"></a>
-                            </div>
-                            <div class="mySlides" class="fade" id="s5">
-                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i5}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i5}"></a>
-                            </div>
-                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                            <div class="dott">
-                            <span class="dot" id="dot1" onclick="currentSlide(1)"></span>
-                            <span class="dot" onclick="currentSlide(2)"></span>
-                            <span class="dot" onclick="currentSlide(3)"></span>
-                            <span class="dot" onclick="currentSlide(4)"></span>
-                            <span class="dot" onclick="currentSlide(5)"></span>
+                // Check if id exists and is odd
+                if (feature.properties.id) {
+                    var marker = L.marker(latlng, {
+                        icon: L.divIcon({
+                            className: 'my-div-icon',
+                            html: `
+                            <div class="icon-text"><strong>${feature.properties.nam}</strong></div>
+                            <img src="https://maithulamm.github.io/20nam/img/XTN.svg" class="icon-image"/>`,
+                            iconSize: [30, 50],
+                        })
+                    });
+
+                    marker.on('click', function() {
+                        var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
+                        map.flyTo(customLatLng, 13, { duration: 0.8 });
+                        isInfoVisible = false;
+                        info.classList.remove("active");
+                        info.classList.add("inactive");
+
+                    });
+
+                    // Define your popup content (replace with actual content)
+                    var content_popup =             
+                    `    
+                    <div class="img_main">
+                    <div class="slideshow-container">
+                        <div class="mySlides" class="fade" id="s1">
+                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i1}" target="_blank"><img class="noidung_img" src="https://maithulamm.github.io/20nam/image/${feature.properties.i1}"></a>
                         </div>
+                        <div class="mySlides" class="fade" id="s2">
+                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i2}" target="_blank"><img class="noidung_img" src="https://maithulamm.github.io/20nam/image/${feature.properties.i2}"></a>
                         </div>
-                        <div>
-                            <div class="img_text">
-                                <p id="text_nam"><strong>${feature.properties.donvi}</strong></p>
-                                <p id="text_nam"><strong>Năm ${feature.properties.nam}</strong></p>
-                                <p id="text_nam">${feature.properties.name_detail}</p>
-                                <p id="text_nam1">${feature.properties.name}</p>
-                                <p id="text_p">${feature.properties.mota}</p>
-                            </div>
+                        <div class="mySlides" class="fade" id="s3">
+                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i3}" target="_blank"><img class="noidung_img" src="https://maithulamm.github.io/20nam/image/${feature.properties.i3}"></a>
+                        </div>
+                        <div class="mySlides" class="fade" id="s4">
+                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i4}" target="_blank"><img class="noidung_img" src="https://maithulamm.github.io/20nam/image/${feature.properties.i4}"></a>
+                        </div>
+                        <div class="mySlides" class="fade" id="s5">
+                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i5}" target="_blank"><img class="noidung_img" src="https://maithulamm.github.io/20nam/image/${feature.properties.i5}"></a>
+                        </div>
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                        <div class="dott">
+                        <span class="dot" id="dot1" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                        <span class="dot" onclick="currentSlide(4)"></span>
+                        <span class="dot" onclick="currentSlide(5)"></span>
+                    </div>
+                    </div>
+                    <div>
+                        <div class="img_text">
+                        <p id="text_nam"><strong>${feature.properties.donvi}</strong></p>
+                            <p id="text_nam"><strong>Năm ${feature.properties.nam}</strong></p>
+                            <p id="text_nam">${feature.properties.name_detail}</p>
+                            <p id="text_nam1">${feature.properties.name}</p>
+                            <p id="text_p">${feature.properties.mota}</p>
                         </div>
                     </div>
-                `;
-                var popupOpened = false;
-                marker.on('click', function() {
-                    if (!popupOpened) {
+                </div>`;
+
+                    var popupOpened = false;
+                    marker.on('click', function() {
                         slideIndex = 1;
-                        setTimeout(function() {
-                            marker.bindPopup(content_popup).openPopup();
-                            popupOpened = true;
-                            marker.unbindPopup();
-                        }, 1000*0.5); // 1000 milliseconds = 1 second
-                    } else {
-                        slideIndex = 1;
-                        setTimeout(function() {
-                        marker.unbindPopup().bindPopup(content_popup).openPopup();
-                        popupOpened = false;
-                        marker.unbindPopup();
-                    }, 1000*0.5);
-                    }
-                });
-            }
+
+                        if (!popupOpened) {
+                            setTimeout(function() {
+                                marker.bindPopup(content_popup).openPopup();
+                                popupOpened = true;
+                                marker.unbindPopup();
+                            }, 1000 * 0.5);
+                        } else {
+                            setTimeout(function() {
+                                marker.unbindPopup().bindPopup(content_popup).openPopup();
+                                popupOpened = false;
+                                marker.unbindPopup();
+                            }, 1000 * 0.5);
+                        }
+                    });
+
+                    return marker;
+                }
+
+                return null; // Return null for features to be excluded
+            },
         }),
     ];
 }
@@ -244,84 +252,92 @@ function createGeoJSONLayer1(data) {
     return [
         L.geoJSON(data, {
             pointToLayer: function(feature, latlng) {
-                var marker = L.marker(latlng, {
-                    icon: L.divIcon({
-                        className: 'my-div-icon',
-                        html: `
-                    
-                        <img src="img/XTN.svg" class="icon-image"/>`,
-                        iconSize: [30, 30]
-                    })
-                });
-                //
-                marker.on('click', function() {
-                    var customLatLng = L.latLng(latlng.lat + .03, latlng.lng);
-                    map.flyTo(customLatLng, 13, {duration : .8});
-                    isInfoVisible = false;
-                    info.classList.remove("active");
-                    info.classList.add("inactive");
-                });
-                return marker;
-            },
-            onEachFeature: function(feature, marker) {
-                var content_popup = 
-                `    <div class="img_main">
-                        <div class="slideshow-container">
-                            <div class="mySlides" class="fade" id="s1">
-                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i1}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i1}"></a>
-                            </div>
-                            <div class="mySlides" class="fade" id="s2">
-                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i2}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i2}"></a>
-                            </div>
-                            <div class="mySlides" class="fade" id="s3">
-                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i3}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i3}"></a>
-                            </div>
-                            <div class="mySlides" class="fade" id="s4">
-                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i4}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i4}"></a>
-                            </div>
-                            <div class="mySlides" class="fade" id="s5">
-                            <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i5}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i5}"></a>
-                            </div>
-                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                            <div class="dott">
-                            <span class="dot" id="dot1" onclick="currentSlide(1)"></span>
-                            <span class="dot" onclick="currentSlide(2)"></span>
-                            <span class="dot" onclick="currentSlide(3)"></span>
-                            <span class="dot" onclick="currentSlide(4)"></span>
-                            <span class="dot" onclick="currentSlide(5)"></span>
+                id = feature.properties.id;
+                // Check if id exists and is odd
+                if (id) {
+                    var marker = L.marker(latlng, {
+                        icon: L.divIcon({
+                            className: 'my-div-icon',
+                            html: `
+                            <img src="https://maithulamm.github.io/20nam/img/XTN.svg" class="icon-image"/>`,
+                            iconSize: [30, 30],
+                        })
+                    });
+
+                    marker.on('click', function() {
+                        var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
+                        map.flyTo(customLatLng, 13, { duration: 0.8 });
+                        isInfoVisible = false;
+                        info.classList.remove("active");
+                        info.classList.add("inactive");
+
+                    });
+
+                    // Define your popup content (replace with actual content)
+                    var content_popup =             
+                    `    
+                    <div class="img_main">
+                    <div class="slideshow-container">
+                        <div class="mySlides" class="fade" id="s1">
+                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i1}" target="_blank"><img class="noidung_img" src="https://maithulamm.github.io/20nam/image/${feature.properties.i1}"></a>
                         </div>
+                        <div class="mySlides" class="fade" id="s2">
+                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i2}" target="_blank"><img class="noidung_img" src="https://maithulamm.github.io/20nam/image/${feature.properties.i2}"></a>
                         </div>
-                        <div>
-                            <div class="img_text">
-                            <p id="text_nam"><strong>${feature.properties.donvi}</strong></p>
-                                <p id="text_nam"><strong>Năm ${feature.properties.nam}</strong></p>
-                                <p id="text_nam">${feature.properties.name_detail}</p>
-                                <p id="text_nam1">${feature.properties.name}</p>
-                                <p id="text_p">${feature.properties.mota}</p>
-                            </div>
+                        <div class="mySlides" class="fade" id="s3">
+                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i3}" target="_blank"><img class="noidung_img" src="https://maithulamm.github.io/20nam/image/${feature.properties.i3}"></a>
+                        </div>
+                        <div class="mySlides" class="fade" id="s4">
+                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i4}" target="_blank"><img class="noidung_img" src="https://maithulamm.github.io/20nam/image/${feature.properties.i4}"></a>
+                        </div>
+                        <div class="mySlides" class="fade" id="s5">
+                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i5}" target="_blank"><img class="noidung_img" src="https://maithulamm.github.io/20nam/image/${feature.properties.i5}"></a>
+                        </div>
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                        <div class="dott">
+                        <span class="dot" id="dot1" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                        <span class="dot" onclick="currentSlide(4)"></span>
+                        <span class="dot" onclick="currentSlide(5)"></span>
+                    </div>
+                    </div>
+                    <div>
+                        <div class="img_text">
+                        <p id="text_nam"><strong>${feature.properties.donvi}</strong></p>
+                            <p id="text_nam"><strong>Năm ${feature.properties.nam}</strong></p>
+                            <p id="text_nam">${feature.properties.name_detail}</p>
+                            <p id="text_nam1">${feature.properties.name}</p>
+                            <p id="text_p">${feature.properties.mota}</p>
                         </div>
                     </div>
-                `;
-                var popupOpened = false;
-                marker.on('click', function() {
-                    if (!popupOpened) {
+                </div>`;
+
+                    var popupOpened = false;
+                    marker.on('click', function() {
                         slideIndex = 1;
-                        setTimeout(function() {
-                            marker.bindPopup(content_popup).openPopup();
-                            popupOpened = true;
-                            marker.unbindPopup();
-                        }, 1000*0.5); // 1000 milliseconds = 1 second
-                    } else {
-                        slideIndex = 1;
-                        setTimeout(function() {
-                        marker.unbindPopup().bindPopup(content_popup).openPopup();
-                        popupOpened = false;
-                        marker.unbindPopup();
-                    }, 1000*0.5);
-                    }
-                });
-            }
+
+                        if (!popupOpened) {
+                            setTimeout(function() {
+                                marker.bindPopup(content_popup).openPopup();
+                                popupOpened = true;
+                                marker.unbindPopup();
+                            }, 1000 * 0.5);
+                        } else {
+                            setTimeout(function() {
+                                marker.unbindPopup().bindPopup(content_popup).openPopup();
+                                popupOpened = false;
+                                marker.unbindPopup();
+                            }, 1000 * 0.5);
+                        }
+                    });
+
+                    return marker;
+                }
+
+                return null; // Return null for features to be excluded
+            },
         }),
     ];
 }
@@ -331,11 +347,24 @@ var [data1] = createGeoJSONLayer(data1);
 var [data2] = createGeoJSONLayer(data2);
 var [data3] = createGeoJSONLayer(data3);
 var [data4] = createGeoJSONLayer(data4);
-
+polygon0 = L.geoJSON(polygon, {
+    onEachFeature: function (feature, layer) {
+        // Nếu ID là 1, thì hiển thị
+        if (feature.properties.ID_4 === X) {
+            layer.setStyle({
+                fillColor: 'transparent',
+                fillOpacity: 1,
+                color: '#a37ea0',
+                weight: 5,
+                dashArray: '3, 5'
+            });
+        }
+    }
+});
 
 //data0 = L.layerGroup([data1, data2]);
 data00.addTo(map);
-
+polygon0.addTo(map);
 //---------------------------------------------------------------------------------------------------------------------------------
 
 // Define the toggleLayer function
