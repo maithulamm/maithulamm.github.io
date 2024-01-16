@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded',
     function() {
         info.style.zIndex = "1001";
         info.style.display = "block";
-        info.classList.remove("inactive");
         info.classList.add("active");
         isInfoVisible = true;
         /*            if (window.innerWidth <= 1000) {
@@ -29,12 +28,10 @@ document.getElementById("nut").addEventListener("click",
         if (isInfoVisible) {
             isInfoVisible = false;
             info.classList.remove("active");
-            info.classList.add("inactive");
             //map.setView([11.014, 106.830], calculateZoom());
         } else {
             info.style.zIndex = "1001";
             info.style.display = "block";
-            info.classList.remove("inactive");
             info.classList.add("active");
             isInfoVisible = true;
             //map.setView([11.014, 107.830], calculateZoom());
@@ -263,16 +260,6 @@ function createGeoJSONLayer1(data, polygon) {
                             iconSize: [30, 30],
                         })
                     });
-                    
-                    marker.on('click', function() {
-                        var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
-                        map.flyTo(customLatLng, 12, { duration: 0.8 });
-                        isInfoVisible = false;
-                        info.classList.remove("active");
-                        info.classList.add("inactive");
-                    });
-                    
-
                     // Define your popup content (replace with actual content)
                     var content_popup =             
                     `    
@@ -313,15 +300,19 @@ function createGeoJSONLayer1(data, polygon) {
                         </div>
                     </div>
                 </div>`;
-
+                var [polygon0] = createPolygon (polygon, feature.properties.join);
                     var popupOpened = false;
                     marker.on('click', function() {
-                        var [polygon0] = createPolygon (polygon, feature.properties.join);
+                        var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
+                        map.flyTo(customLatLng, 12, { duration: 0.8 });
+                        isInfoVisible = false;
+                        info.classList.remove("active");
                         map.eachLayer(function (polygon0) {
                             if (polygon0 instanceof L.GeoJSON) {
                                 map.removeLayer(polygon0);
                             }
                         });
+                        
                         data00.addTo(map);
                         slideIndex = 1;
                         if (!popupOpened) {
@@ -331,7 +322,7 @@ function createGeoJSONLayer1(data, polygon) {
                                 marker.unbindPopup();
                                 setTimeout(function() {
                                     polygon0.addTo(map);
-                                }, 1000 * 0.3);
+                                }, 1000 * 0.1);
                             }, 1000 * 0.5);
                         } else {
                             setTimeout(function() {
@@ -340,7 +331,7 @@ function createGeoJSONLayer1(data, polygon) {
                                 marker.unbindPopup();
                                 setTimeout(function() {
                                     polygon0.addTo(map);
-                                }, 1000 * 0.3);
+                                }, 1000 * 0.1);
                             }, 1000 * 0.5);
                         }
                     });
@@ -363,18 +354,18 @@ function createPolygon (polygon, id){
     return [    
         L.geoJSON(polygon, {
         style: {
-            fillColor: 'transparent',
+            //fillColor: 'transparent',
             fillOpacity: 0,
             color: 'transparent',
          },
-        onEachFeature: function (feature, layer) {
+        pointToLayer: function (feature, layer) {
             if (feature.properties.ID_4 === id) {
                 layer.setStyle({
                     fillColor: 'transparent',
                     fillOpacity: 1,
                     color: 'red',
                     weight: 3,
-                    dashArray: '5, 10'
+                    dashArray: '10, 20'
                 });
             }
         }
