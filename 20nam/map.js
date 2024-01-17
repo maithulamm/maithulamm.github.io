@@ -145,35 +145,26 @@ updateIslandLabels();
                 }
                 map.on('click', onMapClick); */
 //---------------------------------------------------------------------------------------------------------------------------------
-    
+
 //---------------------------------------------------------------------------------------------------------------------------------
 
 // Define the createGeoJSONLayer function
-function createGeoJSONLayer(data) {
+function createGeoJSONLayer(data, polygon) {
     return [
         L.geoJSON(data, {
             pointToLayer: function(feature, latlng) {
+                var [polygon0] = createPolygon (polygon, feature.properties.join);
                 // Check if id exists and is odd
-                if (feature.properties.id) {
+                //if (feature.properties.id) {
                     var marker = L.marker(latlng, {
                         icon: L.divIcon({
                             className: 'my-div-icon',
                             html: `
                             <div class="icon-text"><strong>${feature.properties.nam}</strong></div>
                             <img src="img/XTN.svg" class="icon-image"/>`,
-                            iconSize: [30, 50],
+                            iconSize: [30, 30],
                         })
                     });
-
-                    marker.on('click', function() {
-                        var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
-                        map.flyTo(customLatLng, 13, { duration: 0.8 });
-                        isInfoVisible = false;
-                        info.classList.remove("active");
-                        info.classList.add("inactive");
-
-                    });
-
                     // Define your popup content (replace with actual content)
                     var content_popup =             
                     `    
@@ -214,30 +205,48 @@ function createGeoJSONLayer(data) {
                         </div>
                     </div>
                 </div>`;
-
+                    if (data = data1) {
+                        data_ = data1a;
+                    } else if (data = data2) {
+                        data_ = data2a;
+                    } else if (data = data3) {
+                        data_ = data3a;
+                    } else if (data = data4) {
+                        data_ = data4a;
+                    };
                     var popupOpened = false;
                     marker.on('click', function() {
+                        var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
+                        map.setView(customLatLng, 12/*, { duration: 0.8 }*/);
+                        isInfoVisible = false;
+                        info.classList.remove("active");
+                        delLayer();
+                        data_.addTo(map);
                         slideIndex = 1;
-
                         if (!popupOpened) {
                             setTimeout(function() {
-                                marker.bindPopup(content_popup).openPopup();
+
+                                marker.bindPopup(content_popup).openPopup();}, 1000 * 0.5);
                                 popupOpened = true;
                                 marker.unbindPopup();
-                            }, 1000 * 0.5);
+                                setTimeout(function() {
+                                    polygon0.addTo(map);
+                                }, 1000 * 0.5);
+                            
                         } else {
                             setTimeout(function() {
-                                marker.unbindPopup().bindPopup(content_popup).openPopup();
+                                marker.unbindPopup().bindPopup(content_popup).openPopup();}, 1000 * 0.5);
                                 popupOpened = false;
                                 marker.unbindPopup();
-                            }, 1000 * 0.5);
+                                setTimeout(function() {
+                                    polygon0.addTo(map);
+                                }, 1000 * 0.5);
+                            
                         }
                     });
-
+                    
                     return marker;
-                }
 
-                return null; // Return null for features to be excluded
             },
         }),
     ];
@@ -250,8 +259,9 @@ function createGeoJSONLayer1(data, polygon) {
     return [
         L.geoJSON(data, {
             pointToLayer: function(feature, latlng) {
+                var [polygon0] = createPolygon (polygon, feature.properties.join);
                 // Check if id exists and is odd
-                if (feature.properties.id) {
+                //if (feature.properties.id) {
                     var marker = L.marker(latlng, {
                         icon: L.divIcon({
                             className: 'my-div-icon',
@@ -300,84 +310,89 @@ function createGeoJSONLayer1(data, polygon) {
                         </div>
                     </div>
                 </div>`;
-                var [polygon0] = createPolygon (polygon, feature.properties.join);
+                
                     var popupOpened = false;
                     marker.on('click', function() {
                         var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
-                        map.flyTo(customLatLng, 12, { duration: 0.8 });
+                        map.setView(customLatLng, 11/*, { duration: 0.8 }*/);
                         isInfoVisible = false;
                         info.classList.remove("active");
-                        map.eachLayer(function (polygon0) {
-                            if (polygon0 instanceof L.GeoJSON) {
-                                map.removeLayer(polygon0);
-                            }
-                        });
+                        delLayer();
                         
-                        data00.addTo(map);
+                        data00a.addTo(map);
                         slideIndex = 1;
                         if (!popupOpened) {
                             setTimeout(function() {
-                                marker.bindPopup(content_popup).openPopup();
+                                marker.bindPopup(content_popup).openPopup();}, 1000 * 0.5);
                                 popupOpened = true;
                                 marker.unbindPopup();
                                 setTimeout(function() {
                                     polygon0.addTo(map);
-                                }, 1000 * 0.1);
-                            }, 1000 * 0.5);
+                                }, 1000 * 0.5);
+                            
                         } else {
                             setTimeout(function() {
-                                marker.unbindPopup().bindPopup(content_popup).openPopup();
+                                marker.unbindPopup().bindPopup(content_popup).openPopup();}, 1000 * 0.5);
                                 popupOpened = false;
                                 marker.unbindPopup();
                                 setTimeout(function() {
                                     polygon0.addTo(map);
-                                }, 1000 * 0.1);
-                            }, 1000 * 0.5);
+                                }, 1000 * 0.5);
+                            
                         }
                     });
                     
                     return marker;
-                };
-                return null; // Return null for features to be excluded
+               
             },
         }),
     ];
 }
 // Create GeoJSON layers
-var [data00] = createGeoJSONLayer1(data00,polygon);
-var [data1] = createGeoJSONLayer(data1);
-var [data2] = createGeoJSONLayer(data2);
-var [data3] = createGeoJSONLayer(data3);
-var [data4] = createGeoJSONLayer(data4);
+var [data00a] = createGeoJSONLayer1(data00,polygon);
+var [data1a] = createGeoJSONLayer(data1, polygon);
+var [data2a] = createGeoJSONLayer(data2, polygon);
+var [data3a] = createGeoJSONLayer(data3, polygon);
+var [data4a] = createGeoJSONLayer(data4, polygon);
 
 function createPolygon (polygon, id){
     return [    
         L.geoJSON(polygon, {
-        style: {
-            //fillColor: 'transparent',
-            fillOpacity: 0,
-            color: 'transparent',
-         },
-        pointToLayer: function (feature, layer) {
-            if (feature.properties.ID_4 === id) {
-                layer.setStyle({
-                    fillColor: 'transparent',
-                    fillOpacity: 1,
-                    color: 'red',
-                    weight: 3,
-                    dashArray: '10, 20'
-                });
+            style: {
+                fillColor: 'transparent',
+                fillOpacity: 0,
+                color: 'transparent',
+                weight: 0.1,
+                dashArray: '0,0'
+            },
+            onEachFeature: function (feature, layer) {
+                if (feature.properties.ID_4 === id) {
+                    layer.setStyle({
+                        fillColor: 'transparent',
+                        fillOpacity: 1,
+                        color: 'red',
+                        weight: 3,
+                        dashArray: '10, 20'
+                    });
+                }
             }
-        }
         })
     ]
 };
 
 
 //data0 = L.layerGroup([data1, data2]);
-data00.addTo(map);
+data00a.addTo(map);
 //---------------------------------------------------------------------------------------------------------------------------------
-
+function delLayer() {
+    return [
+        map.eachLayer(function (mapLayer) {
+            if (mapLayer instanceof L.GeoJSON) {
+                map.removeLayer(mapLayer);
+            }
+        })
+    ]
+}
 // Define the toggleLayer function
 function toggleLayer(dataLayer,zoom) {
     if (innerWidth < 1000) {
@@ -385,21 +400,16 @@ function toggleLayer(dataLayer,zoom) {
     }
     map.closePopup();
     // Remove all layers from the map
-    map.eachLayer(function (mapLayer) {
-  
-        if (mapLayer instanceof L.GeoJSON) {
-            map.removeLayer(mapLayer);
-        }
-    });
+    delLayer();
     // Add the selected layers to the map
     dataLayer.addTo(map);
     isInfoVisible = false;
     info.classList.remove("active");
     info.classList.add("inactive");
 
-    function getCenterOfDataLayer(lineLayer) {
+    function getCenterOfDataLayer(Layer) {
         // Get the bounds of the 
-        var bounds = lineLayer.getBounds();
+        var bounds = Layer.getBounds();
         if (bounds.isValid()) {
             // If the bounds are valid, return the center of the bounds
             return bounds.getCenter();
@@ -412,15 +422,12 @@ function toggleLayer(dataLayer,zoom) {
     var centerPoint = getCenterOfDataLayer(dataLayer);
     
     if (centerPoint !== null) {
-        // Sử dụng điểm trung tâm, ví dụ:
-        console.log("Center Point:", centerPoint);
-        map.flyTo(centerPoint, zoom, {duration : zoom/14});
+        map.setView(centerPoint, zoom, {duration : zoom/14});
     } else {
         console.log("Invalid bounds");
     }
         
     dao.addTo(map);
-    legendControl.remove(map);
     isInfoVisible2 = false;
 }
 
@@ -428,27 +435,23 @@ function toggleLayer1() {
 
     map.closePopup();
     // Remove all layers from the map
-    map.eachLayer(function (mapLayer) {
-        if (mapLayer instanceof L.GeoJSON) {
-            map.removeLayer(mapLayer);
-        }
-    });
+    delLayer();
     map.closePopup();
     var screenWidth = window.innerWidth;
     if (screenWidth < 1537) {
         setTimeout(function () {
-            L.layerGroup([data00]).addTo(map);
+            data00a.addTo(map);
         }, 300);
     } else {
-        L.layerGroup([data00]).addTo(map);
+        data00a.addTo(map);
     }
     // Add the selected layers to the map
     isInfoVisible = false;
     info.classList.remove("active");
     info.classList.add("inactive");
-    map.flyTo([11.014, 106.830], calculateZoom(), {duration : .8});
+    map.setView([11.014, 106.830], calculateZoom(), {duration : .6});
     dao.addTo(map);
-    legendControl.addTo(map);
+    //legendControl.addTo(map);
     isInfoVisible2 = true;
 }
 
