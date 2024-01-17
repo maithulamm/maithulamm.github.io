@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded',
         /*            if (window.innerWidth <= 1000) {
             info.style.display = "none";
             } */
-        legendControl.addTo(map);
+        // legendControl.addTo(map);
         isInfoVisible2 = true;
         setTimeout(function () {
-            legendControl.remove(map);
+            //legendControl.remove(map);
             isInfoVisible2 = false;
             }, 5000);
 });
@@ -98,19 +98,19 @@ L.control.scale({ position: 'bottomright', metric: true, imperial: false }).addT
 //-------------------------------------------------------------------------------------------------------------------------
 
 //The hien polygon 2 dao
-var dao = L.geoJSON(data_island, {
-    style: {
-        fillColor: '#f1f6d2', // Màu sắc cho polygon
-        fillOpacity: 1,    // Độ trong suốt của màu
-        color: '#a37ea0',   // Màu viền
-        weight:  0.5,           // Độ dày của viền
-        dashArray: '4, 5'   // Độ dài và khoảng cách của nét đứt khúc
-},
-    onEachFeature: function (feature, layer) {
-        layer.bindPopup(`<div class="text-center"><strong>${feature.properties.name}<br>${feature.properties.tinh} , ${feature.properties.vn}</strong></div>`);
-        layer.openPopup();
-    }
-}).addTo(map);
+// var dao = L.geoJSON(data_island, {
+//     style: {
+//         fillColor: '#f1f6d2', // Màu sắc cho polygon
+//         fillOpacity: 1,    // Độ trong suốt của màu
+//         color: '#a37ea0',   // Màu viền
+//         weight:  0.5,           // Độ dày của viền
+//         dashArray: '4, 5'   // Độ dài và khoảng cách của nét đứt khúc
+// },
+//     onEachFeature: function (feature, layer) {
+//         layer.bindPopup(`<div class="text-center"><strong>${feature.properties.name}<br>${feature.properties.tinh} , ${feature.properties.vn}</strong></div>`);
+//         layer.openPopup();
+//     }
+// }).addTo(map);
 
 // Tạo một lớp để chứa các marker
 var markersLayer = L.layerGroup().addTo(map);
@@ -145,17 +145,105 @@ updateIslandLabels();
                 }
                 map.on('click', onMapClick); */
 //---------------------------------------------------------------------------------------------------------------------------------
-
+function content_popup (feature) {
+    return `    
+    <div class="img_main">
+    <div class="slideshow-container">
+        <div class="mySlides" class="fade" id="s1">
+        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i1}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i1}"></a>
+        </div>
+        <div class="mySlides" class="fade" id="s2">
+        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i2}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i2}"></a>
+        </div>
+        <div class="mySlides" class="fade" id="s3">
+        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i3}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i3}"></a>
+        </div>
+        <div class="mySlides" class="fade" id="s4">
+        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i4}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i4}"></a>
+        </div>
+        <div class="mySlides" class="fade" id="s5">
+        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i5}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i5}"></a>
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div class="dott">
+        <span class="dot" id="dot1" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+    </div>
+    </div>
+    <div>
+        <div class="img_text">
+        <p id="text_nam"><strong>${feature.properties.donvi}</strong></p>
+            <p id="text_nam"><strong>Năm ${feature.properties.nam}</strong></p>
+            <p id="text_nam">${feature.properties.name_detail}</p>
+            <p id="text_nam1">${feature.properties.name}</p>
+            <p id="text_p">${feature.properties.mota}</p>
+        </div>
+    </div>
+    </div>`
+};
 //---------------------------------------------------------------------------------------------------------------------------------
 
 // Define the createGeoJSONLayer function
 function createGeoJSONLayer(data, polygon) {
-    return [
-        L.geoJSON(data, {
-            pointToLayer: function(feature, latlng) {
-                var [polygon0] = createPolygon (polygon, feature.properties.join);
-                // Check if id exists and is odd
-                //if (feature.properties.id) {
+    if (data == data00) {
+        return [
+            L.geoJSON(data, {
+                pointToLayer: function(feature, latlng) {
+                    var [polygon0] = createPolygon (polygon, feature.properties.join);
+                    var marker = L.marker(latlng, {
+                        icon: L.divIcon({
+                            className: 'my-div-icon',
+                            html: `
+                            <img src="img/XTN.svg" class="icon-image"/>`,
+                            iconSize: [30, 30],
+                        })
+                    });
+                        // Define your popup content (replace with actual content)
+                    var popupOpened = false;
+                    marker.on('click', function() {
+                        data_ = data00a;
+                        var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
+                        map.setView(customLatLng, 11/*, { duration: 0.8 }*/);
+                        isInfoVisible = false;
+                        info.classList.remove("active");
+                        delLayer();
+                        data_.addTo(map);
+                        slideIndex = 1;
+                        polygon0.addTo(map);
+                        if (!popupOpened) {
+                            setTimeout(function() {
+                                marker.bindPopup(content_popup(feature)).openPopup();
+                            }, 1000 * 0.5);
+                                popupOpened = true;
+                                marker.unbindPopup();
+                                // setTimeout(function() {
+                                //     polygon0.addTo(map);
+                                // }, 1000 * 0.5);
+                        } else {
+                            setTimeout(function() {
+                                marker.unbindPopup().bindPopup(content_popup(feature)).openPopup();
+                            }, 1000 * 0.5);
+                                popupOpened = false;
+                                marker.unbindPopup();
+                                // setTimeout(function() {
+                                //     polygon0.addTo(map);
+                                // }, 1000 * 0.5);
+                        }
+                    });
+                    return marker;
+                },
+            }),
+        ];
+    }
+    else if (data == data1) {
+        return [
+            L.geoJSON(data, {
+                pointToLayer: function(feature, latlng) {
+                    var [polygon0] = createPolygon (polygon, feature.properties.join);
                     var marker = L.marker(latlng, {
                         icon: L.divIcon({
                             className: 'my-div-icon',
@@ -165,224 +253,229 @@ function createGeoJSONLayer(data, polygon) {
                             iconSize: [30, 30],
                         })
                     });
-                    // Define your popup content (replace with actual content)
-                    var content_popup =             
-                    `    
-                    <div class="img_main">
-                    <div class="slideshow-container">
-                        <div class="mySlides" class="fade" id="s1">
-                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i1}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i1}"></a>
-                        </div>
-                        <div class="mySlides" class="fade" id="s2">
-                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i2}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i2}"></a>
-                        </div>
-                        <div class="mySlides" class="fade" id="s3">
-                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i3}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i3}"></a>
-                        </div>
-                        <div class="mySlides" class="fade" id="s4">
-                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i4}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i4}"></a>
-                        </div>
-                        <div class="mySlides" class="fade" id="s5">
-                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i5}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i5}"></a>
-                        </div>
-                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                        <div class="dott">
-                        <span class="dot" id="dot1" onclick="currentSlide(1)"></span>
-                        <span class="dot" onclick="currentSlide(2)"></span>
-                        <span class="dot" onclick="currentSlide(3)"></span>
-                        <span class="dot" onclick="currentSlide(4)"></span>
-                        <span class="dot" onclick="currentSlide(5)"></span>
-                    </div>
-                    </div>
-                    <div>
-                        <div class="img_text">
-                        <p id="text_nam"><strong>${feature.properties.donvi}</strong></p>
-                            <p id="text_nam"><strong>Năm ${feature.properties.nam}</strong></p>
-                            <p id="text_nam">${feature.properties.name_detail}</p>
-                            <p id="text_nam1">${feature.properties.name}</p>
-                            <p id="text_p">${feature.properties.mota}</p>
-                        </div>
-                    </div>
-                </div>`;
-                    if (data = data1) {
+                        // Define your popup content (replace with actual content)
+                    var popupOpened = false;
+                    marker.on('click', function() {
                         data_ = data1a;
-                    } else if (data = data2) {
-                        data_ = data2a;
-                    } else if (data = data3) {
-                        data_ = data3a;
-                    } else if (data = data4) {
-                        data_ = data4a;
-                    };
-                    var popupOpened = false;
-                    marker.on('click', function() {
-                        var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
-                        map.setView(customLatLng, 12/*, { duration: 0.8 }*/);
-                        isInfoVisible = false;
-                        info.classList.remove("active");
-                        delLayer();
-                        data_.addTo(map);
-                        slideIndex = 1;
-                        if (!popupOpened) {
-                            setTimeout(function() {
-
-                                marker.bindPopup(content_popup).openPopup();}, 1000 * 0.5);
-                                popupOpened = true;
-                                marker.unbindPopup();
-                                setTimeout(function() {
-                                    polygon0.addTo(map);
-                                }, 1000 * 0.5);
-                            
-                        } else {
-                            setTimeout(function() {
-                                marker.unbindPopup().bindPopup(content_popup).openPopup();}, 1000 * 0.5);
-                                popupOpened = false;
-                                marker.unbindPopup();
-                                setTimeout(function() {
-                                    polygon0.addTo(map);
-                                }, 1000 * 0.5);
-                            
-                        }
-                    });
-                    
-                    return marker;
-
-            },
-        }),
-    ];
-}
-
-
-
-function createGeoJSONLayer1(data, polygon) {
-
-    return [
-        L.geoJSON(data, {
-            pointToLayer: function(feature, latlng) {
-                var [polygon0] = createPolygon (polygon, feature.properties.join);
-                // Check if id exists and is odd
-                //if (feature.properties.id) {
-                    var marker = L.marker(latlng, {
-                        icon: L.divIcon({
-                            className: 'my-div-icon',
-                            html: `
-                            <img src="img/XTN.svg" class="icon-image"/>`,
-                            iconSize: [30, 30],
-                        })
-                    });
-                    // Define your popup content (replace with actual content)
-                    var content_popup =             
-                    `    
-                    <div class="img_main">
-                    <div class="slideshow-container">
-                        <div class="mySlides" class="fade" id="s1">
-                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i1}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i1}"></a>
-                        </div>
-                        <div class="mySlides" class="fade" id="s2">
-                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i2}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i2}"></a>
-                        </div>
-                        <div class="mySlides" class="fade" id="s3">
-                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i3}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i3}"></a>
-                        </div>
-                        <div class="mySlides" class="fade" id="s4">
-                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i4}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i4}"></a>
-                        </div>
-                        <div class="mySlides" class="fade" id="s5">
-                        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i5}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i5}"></a>
-                        </div>
-                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                        <div class="dott">
-                        <span class="dot" id="dot1" onclick="currentSlide(1)"></span>
-                        <span class="dot" onclick="currentSlide(2)"></span>
-                        <span class="dot" onclick="currentSlide(3)"></span>
-                        <span class="dot" onclick="currentSlide(4)"></span>
-                        <span class="dot" onclick="currentSlide(5)"></span>
-                    </div>
-                    </div>
-                    <div>
-                        <div class="img_text">
-                        <p id="text_nam"><strong>${feature.properties.donvi}</strong></p>
-                            <p id="text_nam"><strong>Năm ${feature.properties.nam}</strong></p>
-                            <p id="text_nam">${feature.properties.name_detail}</p>
-                            <p id="text_nam1">${feature.properties.name}</p>
-                            <p id="text_p">${feature.properties.mota}</p>
-                        </div>
-                    </div>
-                </div>`;
-                
-                    var popupOpened = false;
-                    marker.on('click', function() {
                         var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
                         map.setView(customLatLng, 11/*, { duration: 0.8 }*/);
                         isInfoVisible = false;
                         info.classList.remove("active");
                         delLayer();
-                        
-                        data00a.addTo(map);
+                        data_.addTo(map);
                         slideIndex = 1;
+                        polygon0.addTo(map);
                         if (!popupOpened) {
                             setTimeout(function() {
-                                marker.bindPopup(content_popup).openPopup();}, 1000 * 0.5);
+                                marker.bindPopup(content_popup(feature)).openPopup();
+                            }, 1000 * 0.5);
                                 popupOpened = true;
                                 marker.unbindPopup();
-                                setTimeout(function() {
-                                    polygon0.addTo(map);
-                                }, 1000 * 0.5);
-                            
+                                // setTimeout(function() {
+                                //     polygon0.addTo(map);
+                                // }, 1000 * 0.5);
                         } else {
                             setTimeout(function() {
-                                marker.unbindPopup().bindPopup(content_popup).openPopup();}, 1000 * 0.5);
+                                marker.unbindPopup().bindPopup(content_popup(feature)).openPopup();
+                            }, 1000 * 0.5);
                                 popupOpened = false;
                                 marker.unbindPopup();
-                                setTimeout(function() {
-                                    polygon0.addTo(map);
-                                }, 1000 * 0.5);
-                            
+                                // setTimeout(function() {
+                                //     polygon0.addTo(map);
+                                // }, 1000 * 0.5);
                         }
                     });
-                    
                     return marker;
-               
+                },
+            }),
+        ];
+    } else if (data == data2) {
+    return [
+        L.geoJSON(data, {
+            pointToLayer: function(feature, latlng) {
+                var [polygon0] = createPolygon (polygon, feature.properties.join);
+                var marker = L.marker(latlng, {
+                    icon: L.divIcon({
+                        className: 'my-div-icon',
+                        html: `
+                        <div class="icon-text"><strong>${feature.properties.nam}</strong></div>
+                        <img src="img/XTN.svg" class="icon-image"/>`,
+                        iconSize: [30, 30],
+                    })
+                });
+                    // Define your popup content (replace with actual content)
+                var popupOpened = false;
+                marker.on('click', function() {
+                    data_ = data2a;
+                    var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
+                    map.setView(customLatLng, 11/*, { duration: 0.8 }*/);
+                    isInfoVisible = false;
+                    info.classList.remove("active");
+                    delLayer();
+                    data_.addTo(map);
+                    slideIndex = 1;
+                    polygon0.addTo(map);
+                    if (!popupOpened) {
+                        setTimeout(function() {
+                            marker.bindPopup(content_popup(feature)).openPopup();
+                        }, 1000 * 0.5);
+                            popupOpened = true;
+                            marker.unbindPopup();
+                            // setTimeout(function() {
+                            //     polygon0.addTo(map);
+                            // }, 1000 * 0.5);
+                    } else {
+                        setTimeout(function() {
+                            marker.unbindPopup().bindPopup(content_popup(feature)).openPopup();
+                        }, 1000 * 0.5);
+                            popupOpened = false;
+                            marker.unbindPopup();
+                            // setTimeout(function() {
+                            //     polygon0.addTo(map);
+                            // }, 1000 * 0.5);
+                    }
+                });
+                return marker;
+
             },
         }),
     ];
-}
-// Create GeoJSON layers
-var [data00a] = createGeoJSONLayer1(data00,polygon);
-var [data1a] = createGeoJSONLayer(data1, polygon);
-var [data2a] = createGeoJSONLayer(data2, polygon);
-var [data3a] = createGeoJSONLayer(data3, polygon);
-var [data4a] = createGeoJSONLayer(data4, polygon);
+} else if (data == data3) {
+    return [
+        L.geoJSON(data, {
+            pointToLayer: function(feature, latlng) {
+                var [polygon0] = createPolygon (polygon, feature.properties.join);
+                var marker = L.marker(latlng, {
+                    icon: L.divIcon({
+                        className: 'my-div-icon',
+                        html: `
+                        <div class="icon-text"><strong>${feature.properties.nam}</strong></div>
+                        <img src="img/XTN.svg" class="icon-image"/>`,
+                        iconSize: [30, 30],
+                    })
+                });
+                    // Define your popup content (replace with actual content)
+                var popupOpened = false;
+                marker.on('click', function() {
+                    data_ = data3a;
+                    var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
+                    map.setView(customLatLng, 11/*, { duration: 0.8 }*/);
+                    isInfoVisible = false;
+                    info.classList.remove("active");
+                    delLayer();
+                    data_.addTo(map);
+                    slideIndex = 1;
+                    polygon0.addTo(map);
+                    if (!popupOpened) {
+                        setTimeout(function() {
+                            marker.bindPopup(content_popup(feature)).openPopup();
+                        }, 1000 * 0.5);
+                            popupOpened = true;
+                            marker.unbindPopup();
+                            // setTimeout(function() {
+                            //     polygon0.addTo(map);
+                            // }, 1000 * 0.5);
+                    } else {
+                        setTimeout(function() {
+                            marker.unbindPopup().bindPopup(content_popup(feature)).openPopup();
+                        }, 1000 * 0.5);
+                            popupOpened = false;
+                            marker.unbindPopup();
+                            // setTimeout(function() {
+                            //     polygon0.addTo(map);
+                            // }, 1000 * 0.5);
+                    }
+                });
+                return marker;
 
-function createPolygon (polygon, id){
-    return [    
-        L.geoJSON(polygon, {
-            style: {
-                fillColor: 'transparent',
-                fillOpacity: 0,
-                color: 'transparent',
-                weight: 0.1,
-                dashArray: '0,0'
             },
-            onEachFeature: function (feature, layer) {
-                if (feature.properties.ID_4 === id) {
-                    layer.setStyle({
-                        fillColor: 'transparent',
-                        fillOpacity: 1,
-                        color: 'red',
-                        weight: 3,
-                        dashArray: '10, 20'
-                    });
-                }
-            }
-        })
+        }),
     ]
+} else if (data == data4) {
+    return [
+        L.geoJSON(data, {
+            pointToLayer: function(feature, latlng) {
+                var [polygon0] = createPolygon (polygon, feature.properties.join);
+                var marker = L.marker(latlng, {
+                    icon: L.divIcon({
+                        className: 'my-div-icon',
+                        html: `
+                        <div class="icon-text"><strong>${feature.properties.nam}</strong></div>
+                        <img src="img/XTN.svg" class="icon-image"/>`,
+                        iconSize: [30, 30],
+                    })
+                });
+                    // Define your popup content (replace with actual content)
+                var popupOpened = false;
+                marker.on('click', function() {
+                    data_ = data4a;
+                    var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
+                    map.setView(customLatLng, 11/*, { duration: 0.8 }*/);
+                    isInfoVisible = false;
+                    info.classList.remove("active");
+                    delLayer();
+                    data_.addTo(map);
+                    slideIndex = 1;
+                    polygon0.addTo(map);
+                    if (!popupOpened) {
+                        setTimeout(function() {
+                            marker.bindPopup(content_popup(feature)).openPopup();
+                        }, 1000 * 0.5);
+                            popupOpened = true;
+                            marker.unbindPopup();
+                            // setTimeout(function() {
+                            //     polygon0.addTo(map);
+                            // }, 1000 * 0.5);
+                    } else {
+                        setTimeout(function() {
+                            marker.unbindPopup().bindPopup(content_popup(feature)).openPopup();
+                        }, 1000 * 0.5);
+                            popupOpened = false;
+                            marker.unbindPopup();
+                            // setTimeout(function() {
+                            //     polygon0.addTo(map);
+                            // }, 1000 * 0.5);
+                    }
+                });
+                return marker;
+
+            },
+        }),
+    ]
+}
+}
+
+
+
+// Create GeoJSON layers
+var [data00a] = createGeoJSONLayer(data00,polygon);
+
+
+//L.control.layers(basemapLayers,overlays).addTo(map);
+function createPolygon (polygon, id){
+    p = L.geoJSON(polygon, {
+        style: {
+            fillColor: 'transparent',
+            fillOpacity: 1,
+            color: 'red',
+            weight: 2.5,
+            dashArray: '7, 10'
+        },
+        filter: function(feature) {
+            return feature.properties.ID_4 === id;            
+        }
+    })
+    return [p]
 };
 
 
 //data0 = L.layerGroup([data1, data2]);
 data00a.addTo(map);
+
+var [data1a] = createGeoJSONLayer(data1, polygon);
+var [data2a] = createGeoJSONLayer(data2, polygon);
+var [data3a] = createGeoJSONLayer(data3, polygon);
+var [data4a] = createGeoJSONLayer(data4, polygon);
 //---------------------------------------------------------------------------------------------------------------------------------
 function delLayer() {
     return [
@@ -422,7 +515,7 @@ function toggleLayer(dataLayer,zoom) {
     var centerPoint = getCenterOfDataLayer(dataLayer);
     
     if (centerPoint !== null) {
-        map.setView(centerPoint, zoom, {duration : zoom/14});
+        map.flyTo(centerPoint, zoom, {duration : zoom/14});
     } else {
         console.log("Invalid bounds");
     }
@@ -431,29 +524,29 @@ function toggleLayer(dataLayer,zoom) {
     isInfoVisible2 = false;
 }
 
-function toggleLayer1() {
+// function toggleLayer1() {
 
-    map.closePopup();
-    // Remove all layers from the map
-    delLayer();
-    map.closePopup();
-    var screenWidth = window.innerWidth;
-    if (screenWidth < 1537) {
-        setTimeout(function () {
-            data00a.addTo(map);
-        }, 300);
-    } else {
-        data00a.addTo(map);
-    }
-    // Add the selected layers to the map
-    isInfoVisible = false;
-    info.classList.remove("active");
-    info.classList.add("inactive");
-    map.setView([11.014, 106.830], calculateZoom(), {duration : .6});
-    dao.addTo(map);
-    //legendControl.addTo(map);
-    isInfoVisible2 = true;
-}
+//     map.closePopup();
+//     // Remove all layers from the map
+//     delLayer();
+//     map.closePopup();
+//     var screenWidth = window.innerWidth;
+//     if (screenWidth < 1537) {
+//         setTimeout(function () {
+//             data00a.addTo(map);
+//         }, 300);
+//     } else {
+//         data00a.addTo(map);
+//     }
+//     // Add the selected layers to the map
+//     isInfoVisible = false;
+//     info.classList.remove("active");
+//     info.classList.add("inactive");
+//     map.setView([11.014, 106.830], calculateZoom(), {duration : .6});
+//     dao.addTo(map);
+//     //legendControl.addTo(map);
+//     isInfoVisible2 = true;
+// }
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
