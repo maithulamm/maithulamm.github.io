@@ -207,13 +207,15 @@ function createGeoJSONLayer(data, polygon) {
                     marker.on('click', function() {
                         data_ = data00a;
                         var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
-                        map.setView(customLatLng, 11/*, { duration: 0.8 }*/);
+                        map.flyTo(customLatLng, 11, { duration: 0.5 });
                         isInfoVisible = false;
                         info.classList.remove("active");
                         delLayer();
                         data_.addTo(map);
                         slideIndex = 1;
-                        polygon0.addTo(map);
+                        setTimeout(function() {
+                            polygon0.addTo(map);
+                        }, 1000 * 0.6);
                         if (!popupOpened) {
                             setTimeout(function() {
                                 marker.bindPopup(content_popup(feature)).openPopup();
@@ -258,13 +260,15 @@ function createGeoJSONLayer(data, polygon) {
                     marker.on('click', function() {
                         data_ = data1a;
                         var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
-                        map.setView(customLatLng, 11/*, { duration: 0.8 }*/);
+                       map.flyTo(customLatLng, 11, { duration: 0.5 });
                         isInfoVisible = false;
                         info.classList.remove("active");
                         delLayer();
                         data_.addTo(map);
                         slideIndex = 1;
-                        polygon0.addTo(map);
+                        setTimeout(function() {
+                            polygon0.addTo(map);
+                        }, 1000 * 0.6);
                         if (!popupOpened) {
                             setTimeout(function() {
                                 marker.bindPopup(content_popup(feature)).openPopup();
@@ -308,13 +312,15 @@ function createGeoJSONLayer(data, polygon) {
                 marker.on('click', function() {
                     data_ = data2a;
                     var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
-                    map.setView(customLatLng, 11/*, { duration: 0.8 }*/);
+                   map.flyTo(customLatLng, 11, { duration: 0.5 });
                     isInfoVisible = false;
                     info.classList.remove("active");
                     delLayer();
                     data_.addTo(map);
                     slideIndex = 1;
-                    polygon0.addTo(map);
+                    setTimeout(function() {
+                        polygon0.addTo(map);
+                    }, 1000 * 0.6);
                     if (!popupOpened) {
                         setTimeout(function() {
                             marker.bindPopup(content_popup(feature)).openPopup();
@@ -359,13 +365,15 @@ function createGeoJSONLayer(data, polygon) {
                 marker.on('click', function() {
                     data_ = data3a;
                     var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
-                    map.setView(customLatLng, 11/*, { duration: 0.8 }*/);
+                   map.flyTo(customLatLng, 11, { duration: 0.5 });
                     isInfoVisible = false;
                     info.classList.remove("active");
                     delLayer();
                     data_.addTo(map);
                     slideIndex = 1;
-                    polygon0.addTo(map);
+                    setTimeout(function() {
+                        polygon0.addTo(map);
+                    }, 1000 * 0.6);
                     if (!popupOpened) {
                         setTimeout(function() {
                             marker.bindPopup(content_popup(feature)).openPopup();
@@ -410,13 +418,15 @@ function createGeoJSONLayer(data, polygon) {
                 marker.on('click', function() {
                     data_ = data4a;
                     var customLatLng = L.latLng(latlng.lat + 0.03, latlng.lng + 0.0);
-                    map.setView(customLatLng, 11/*, { duration: 0.8 }*/);
+                   map.flyTo(customLatLng, 11, { duration: 0.5 });
                     isInfoVisible = false;
                     info.classList.remove("active");
                     delLayer();
                     data_.addTo(map);
                     slideIndex = 1;
-                    polygon0.addTo(map);
+                    setTimeout(function() {
+                        polygon0.addTo(map);
+                    }, 1000 * 0.6);
                     if (!popupOpened) {
                         setTimeout(function() {
                             marker.bindPopup(content_popup(feature)).openPopup();
