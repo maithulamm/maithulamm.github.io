@@ -251,7 +251,7 @@ function createGeoJSONLayer(data, polygon) {
                             className: 'my-div-icon',
                             html: `
                             <div class="icon-text"><strong>${feature.properties.nam}</strong></div>
-                            <img src="img/XTN.svg" class="icon-image"/>`,
+                            <img src="https://maithulamm.github.io/20nam/img/XTN.svg" class="icon-image"/>`,
                             iconSize: [30, 30],
                         })
                     });
@@ -303,7 +303,7 @@ function createGeoJSONLayer(data, polygon) {
                         className: 'my-div-icon',
                         html: `
                         <div class="icon-text"><strong>${feature.properties.nam}</strong></div>
-                        <img src="img/XTN.svg" class="icon-image"/>`,
+                        <img src="https://maithulamm.github.io/20nam/img/XTN.svg" class="icon-image"/>`,
                         iconSize: [30, 30],
                     })
                 });
@@ -356,7 +356,7 @@ function createGeoJSONLayer(data, polygon) {
                         className: 'my-div-icon',
                         html: `
                         <div class="icon-text"><strong>${feature.properties.nam}</strong></div>
-                        <img src="img/XTN.svg" class="icon-image"/>`,
+                        <img src="https://maithulamm.github.io/20nam/img/XTN.svg" class="icon-image"/>`,
                         iconSize: [30, 30],
                     })
                 });
@@ -409,7 +409,7 @@ function createGeoJSONLayer(data, polygon) {
                         className: 'my-div-icon',
                         html: `
                         <div class="icon-text"><strong>${feature.properties.nam}</strong></div>
-                        <img src="img/XTN.svg" class="icon-image"/>`,
+                        <img src="https://maithulamm.github.io/20nam/img/XTN.svg" class="icon-image"/>`,
                         iconSize: [30, 30],
                     })
                 });
