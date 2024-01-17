@@ -5,37 +5,40 @@
 
 var info = document.getElementById("info");
 
-var isInfoVisible = false;
 document.addEventListener('DOMContentLoaded', 
     function() {
         info.style.zIndex = "1001";
         info.style.display = "block";
+        info.classList.remove("inactive");
         info.classList.add("active");
         isInfoVisible = true;
-        /*            if (window.innerWidth <= 1000) {
-            info.style.display = "none";
-            } */
-        // legendControl.addTo(map);
+        
+        //
+        legendControl.addTo(map);
         isInfoVisible2 = true;
         setTimeout(function () {
-            //legendControl.remove(map);
+            legendControl.remove(map);
             isInfoVisible2 = false;
             }, 5000);
 });
-
+var isInfoVisible = false;
 document.getElementById("nut").addEventListener("click", 
     function toggleInfo() {
         if (isInfoVisible) {
-            isInfoVisible = false;
             info.classList.remove("active");
-            //map.setView([11.014, 106.830], calculateZoom());
+            info.classList.add("inactive");
+            isInfoVisible = false;
+            if (window.innerWidth <= 1000) {
+            info.style.display = "none";
+            }
         } else {
+            info.classList.remove("inactive");
+            info.classList.add("active");
+            info.style.display.remove = "none";
             info.style.zIndex = "1001";
             info.style.display = "block";
-            info.classList.add("active");
             isInfoVisible = true;
-            //map.setView([11.014, 107.830], calculateZoom());
-        }
+        };
     });
 
 
