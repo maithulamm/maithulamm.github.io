@@ -150,19 +150,19 @@ function content_popup (feature) {
     <div class="img_main">
     <div class="slideshow-container">
         <div class="mySlides" class="fade" id="s1">
-        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i1}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i1}"></a>
+        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i1}" target="_blank"><img class="noidung_img" src="https://maithulamm.github.io/20nam/image/${feature.properties.i1}"></a>
         </div>
         <div class="mySlides" class="fade" id="s2">
-        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i2}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i2}"></a>
+        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i2}" target="_blank"><img class="noidung_img" src="https://maithulamm.github.io/20nam/image/${feature.properties.i2}"></a>
         </div>
         <div class="mySlides" class="fade" id="s3">
-        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i3}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i3}"></a>
+        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i3}" target="_blank"><img class="noidung_img" src="https://maithulamm.github.io/20nam/image/${feature.properties.i3}"></a>
         </div>
         <div class="mySlides" class="fade" id="s4">
-        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i4}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i4}"></a>
+        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i4}" target="_blank"><img class="noidung_img" src="https://maithulamm.github.io/20nam/image/${feature.properties.i4}"></a>
         </div>
         <div class="mySlides" class="fade" id="s5">
-        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i5}" target="_blank"><img class="noidung_img" src="image/${feature.properties.i5}"></a>
+        <a href="https://maithulamm.github.io/20nam/image/${feature.properties.i5}" target="_blank"><img class="noidung_img" src="https://maithulamm.github.io/20nam/image/${feature.properties.i5}"></a>
         </div>
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -198,7 +198,7 @@ function createGeoJSONLayer(data, polygon) {
                         icon: L.divIcon({
                             className: 'my-div-icon',
                             html: `
-                            <img src="img/XTN.svg" class="icon-image"/>`,
+                            <img src="https://maithulamm.github.io/20nam/img/XTN.svg" class="icon-image"/>`,
                             iconSize: [30, 30],
                         })
                     });
