@@ -531,4 +531,7 @@ body{
     height: 1vh;
     padding-bottom: 1.5vh;
 }
+#info {
+    display: none;
+}
 }
