@@ -562,7 +562,7 @@
           }
           t.attributionControl.setPrefix(
             T +
-              '</a>|<a href="https://hcmussh.edu.vn/youth" target="_blank">Thực hiện: <strong>ĐTN-HSV, HCMUSSH<strong></a>'
+              '</a>|<a href="https://hcmussh.edu.vn/youth" target="_blank">Thực hiện: <strong>Đoàn - Hội khoa Địa lý, HCMUSSH<strong></a>'
           )
         }
         t.attributionControl._esriAttributionLayerCount =
