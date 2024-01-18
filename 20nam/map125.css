@@ -475,19 +475,19 @@ legend{
         display: block;
         position: absolute;
         top: 16vh;
-        left: 2.9vw;
+        left: 2vw;
         padding: 0;
     }
     .checkmark {
-        width: 15vw;
+        width: 16vw;
         height: 3.8vh;
-        font-size: 0.9vh;
+        font-size: 0.8vh;
         padding-top: .4vh;
     }
     .checkmark1 {
         display: block;
-        width: 15vw;
-        height: 3.8vh;
+        width: 16vw;
+        height: 4vh;
         font-size: 1.3vh;
         display: flex;
         justify-content: center;
@@ -501,7 +501,7 @@ legend{
         top: 1vh;
         left: 30vw;
         font-size: 1.5vh;
-        width: 55vw;
+        width: 58vw;
     }
     #info2 {
         width: 40vw;
