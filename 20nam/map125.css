@@ -8,7 +8,7 @@ html::-webkit-scrollbar{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    -moz-user-select: none !important;
+    /* -moz-user-select: none !important;
 
 -webkit-touch-callout: none !important;
 
@@ -20,7 +20,7 @@ html::-webkit-scrollbar{
 
 -ms-user-select: none !important;
 
-user-select: none !important;
+user-select: none !important; */
 }
 body{
     background-image:url("img/back.png");
@@ -284,6 +284,11 @@ body{
 
 .icon-image {
     height: 1.8vh;
+    object-fit: contain;
+    text-align: center;
+}
+.icon-image0 {
+    height: 2.1vh;
     object-fit: contain;
     text-align: center;
 }

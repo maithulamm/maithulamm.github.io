@@ -12,9 +12,7 @@ document.addEventListener('DOMContentLoaded',
         info.classList.remove("inactive");
         info.classList.add("active");
         isInfoVisible = true;
-        
-        //
-        legendControl.addTo(map);
+        //legendControl.addTo(map);
         isInfoVisible2 = true;
         setTimeout(function () {
             legendControl.remove(map);
@@ -200,11 +198,11 @@ function createGeoJSONLayer(data, polygon) {
                     var marker = L.marker(latlng, {
                         icon: L.divIcon({
                             className: 'my-div-icon',
-                            html: `
-                            <img src="https://maithulamm.github.io/20nam/img/XTN.svg" class="icon-image"/>`,
+                            html: feature.properties.id == 0 ? `<img src="https://maithulamm.github.io/20nam/img/xtn05.png" class="icon-image0"/>` : `<img src="https://maithulamm.github.io/20nam/img/XTN.svg" class="icon-image"/>`,
                             iconSize: [30, 30],
                         })
-                    });
+                    }).addTo(map);
+                    
                         // Define your popup content (replace with actual content)
                     var popupOpened = false;
                     marker.on('click', function() {
@@ -252,9 +250,7 @@ function createGeoJSONLayer(data, polygon) {
                     var marker = L.marker(latlng, {
                         icon: L.divIcon({
                             className: 'my-div-icon',
-                            html: `
-                            <div class="icon-text"><strong>${feature.properties.nam}</strong></div>
-                            <img src="https://maithulamm.github.io/20nam/img/XTN.svg" class="icon-image"/>`,
+                            html: feature.properties.id == 0 ? `<div class="icon-text"><strong>${feature.properties.nam}</strong></div><img src="https://maithulamm.github.io/20nam/img/xtn05.png" class="icon-image0"/>` : `<div class="icon-text"><strong>${feature.properties.nam}</strong></div><img src="https://maithulamm.github.io/20nam/img/XTN.svg" class="icon-image"/>`,
                             iconSize: [30, 30],
                         })
                     });
